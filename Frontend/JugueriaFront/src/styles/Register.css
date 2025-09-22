@@ -1,0 +1,42 @@
+.fm-ContenedorDelTodo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.fm-FormularioRegistro {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height:  25rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.603);
+    padding: 1rem;
+}
+
+.fm-LogoJugueria{
+    width: 150px;
+    height: 150px;
+    position: absolute; 
+    top: 20px;          
+    right: 20px;        
+}
+
+.fm-FormularioRegistro-h1 {
+    font-size: 2rem;
+    font-weight: 999;
+}
+
+.fm-FormularioRegistro-Inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

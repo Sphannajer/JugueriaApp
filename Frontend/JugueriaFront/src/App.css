@@ -1,0 +1,12 @@
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  background-image: url('./assets/FondoPrincipalLR.webp');
+  background-repeat: no-repeat;
+  background-position: 50% -50%;
+  background-size: 120rem;
+  min-height: 100vh;
+  max-width: 100%;
+}
