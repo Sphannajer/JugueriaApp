@@ -1,13 +1,23 @@
 import React from "react";
-import "./Visitanos.css";
+import { Link } from "react-router-dom";
+import "../styles/Visitanos.css";
+import Logo from "../assets/LogoOfi.webp";
+import Carrito from "../assets/Carrito.webp";
+import Jugos from "../assets/Jugos.webp";
+import Mapa from "../assets/Mapa.webp";
+import Interior from "../assets/Interior.webp";
+import Face from "../assets/Face.webp";
+import Insta from "../assets/Insta.webp";
+import Wasap from "../assets/Wasap.webp";
 
-function Visitanos() {
+
+export default function Visitanos() {
   return (
     <div className="visitanos-container">
       {/* Barra Superior */}
       <header className="navbar">
         <div className="navbar-left">
-          <img src="/assets/LogoOfi.webp" alt="Tía Julia" className="logo" />
+          <img src={Logo} alt="Tía Julia" className="logo" />
 
           <nav className="nav-links">
             <a href="/">Inicio</a>
@@ -19,41 +29,44 @@ function Visitanos() {
 
         <div className="nav-actions">
           <a href="/login">Login/Register</a>
-          <img src="/assets/Carrito.webp" alt="Carrito" className="cart-icon" />
+          <img src={Carrito} alt="Carrito" className="cart-icon" />
         </div>
       </header>
 
-      {/* Foto grande de jugos */}
+
+      {/* 1er Banner */}
       <section className="hero-section">
-        <img src="/assets/Jugos.webp" alt="Jugos naturales" className="hero-img" />
+        <img src={Jugos} alt="Jugos naturales" className="hero-img" />
         <div className="hero-text">
           <h1>¿Dónde nos encuentras?</h1>
         </div>
       </section>
 
-      {/* Dirección + mapa */}
+
+      {/* Mapa */}
       <section className="map-section">
         <div className="address">
           <h2>Av. Perú...</h2>
           <p>
-            Frente al banco de la Municipalidad, al lado de una tienda de abarrotes,
+            Frente al banco de la Municipalidad, al lado de una tienda de abarrotes, 
             dentro del Mercado Las Dalias
           </p>
         </div>
-        <img src="/assets/Mapa.webp" alt="Mapa ubicación" className="map-img" />
+        <img src={Mapa} alt="Mapa ubicación" className="map-img" />
       </section>
 
-      {/* Foto del interior de la tienda */}
+
+      {/* Referencia */}
       <section className="store-section">
         <h2>Como referencia:</h2>
-        <img src="/assets/Interior.webp" alt="Interior de la tienda" className="store-img" />
+        <img src={Interior} alt="Interior de la tienda" className="store-img" />
       </section>
 
-      {/* Barra inferior */}
+
+      {/* Referencia */}
       <footer className="footer">
         <div className="footer-left">
-          <img src="/assets/LogoOfi.webp" alt="Tía Julia" className="footer-logo" />
-
+          <img src={Logo} alt="Tía Julia" className="footer-logo" />
           <div className="footer-links">
             <a href="/">Inicio</a>
             <a href="/menu">Menú</a>
@@ -63,9 +76,9 @@ function Visitanos() {
         </div>
 
         <div className="footer-social">
-          <img src="/assets/Face.webp" alt="Facebook" />
-          <img src="/assets/Insta.webp" alt="Instagram" />
-          <img src="/assets/Wasap.webp" alt="Whatsapp" />
+          <img src={Face} alt="Facebook" />
+          <img src={Insta} alt="Instagram" />
+          <img src={Wasap} alt="Whatsapp" />
         </div>
 
         <div className="footer-contact">
@@ -76,5 +89,3 @@ function Visitanos() {
     </div>
   );
 }
-
-export default Visitanos;
