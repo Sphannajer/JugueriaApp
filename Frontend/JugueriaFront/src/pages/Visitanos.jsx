@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
 import "../styles/Visitanos.css";
 import Logo from "../assets/LogoOfi.webp";
 import Carrito from "../assets/Carrito.webp";
@@ -15,23 +16,7 @@ export default function Visitanos() {
   return (
     <div className="visitanos-container">
       {/* Barra Superior */}
-      <header className="navbar">
-        <div className="navbar-left">
-          <img src={Logo} alt="Tía Julia" className="logo" />
-
-          <nav className="nav-links">
-            <a href="/">Inicio</a>
-            <a href="/menu">Menú</a>
-            <a href="/nosotros">Nosotros</a>
-            <a href="/visitanos" className="active">Visítanos</a>
-          </nav>
-        </div>
-
-        <div className="nav-actions">
-          <a href="/login">Login/Register</a>
-          <img src={Carrito} alt="Carrito" className="cart-icon" />
-        </div>
-      </header>
+      <Header />
 
 
       {/* 1er Banner */}
