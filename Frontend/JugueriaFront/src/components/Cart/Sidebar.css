@@ -1,0 +1,102 @@
+
+.sidebar {
+  background-color: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  min-width: 250px;
+  margin-right: 2rem;
+  height: fit-content;
+  flex-shrink: 0;
+}
+
+.close-btn {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.sidebar h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  margin-bottom: 1.5rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 9999px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #ff9900;
+}
+
+.sidebar hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 1.5rem 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  color: #555;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar button:hover {
+  background-color: #f0f0f0;
+}
+
+.sidebar button.active {
+  background-color: #ff9900;
+  color: #fff;
+  font-weight: 600;
+}
+
+.subcategories {
+  padding-left: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+.subcategories li {
+  margin-bottom: 0.25rem;
+}
+
+.subcategories button {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
