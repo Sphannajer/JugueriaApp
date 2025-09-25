@@ -10,16 +10,16 @@ export default function Login() {
             <div className="fm-ContenedorDelTodoLogin">
                 <img src={logoJugueria} alt="logoJugueria" className="fm-LogoJugueria" />
                 <div className="fm-Formulario">
-                    <h1 className="fm-Formulario-h1">Login</h1>
+                    <h1 className="fm-Formulario-h1">LOGIN</h1>
+                    <strong className="fm-Formulario-Strong">Eres nuevo ? <Link to="/register" className="fm-Formulario-LinkRegistro" >Registrate aqui para emepezar a pedir</Link> </strong>
                     <form className="fm-Formulario-inputs">
                         <Input type="text" name="user" placeholder="User" required />
-
                         <Input type="password" name="Contrasenia" placeholder="Contraseña" required />
-                        <Button text="Iniciar Sesión" type="submit" />
+                        <Button text="Empezar a Pedir" type="submit" />
+                        <Link to="/register" className="fm-Formulario-LinkOlvido" >Olvidaste la contraseña?</Link>
                     </form>
-                    <p >
-                        <Link to="/register" className="fm-Formulario-LinkRegistro" >Resgistrate aqui</Link>
-                    </p>
+                        
+
                 </div>
             </div>
         </>

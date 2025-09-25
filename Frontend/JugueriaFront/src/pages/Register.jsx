@@ -10,7 +10,7 @@ export default function Register() {
             <div className="fm-ContenedorDelTodo">
                 <img src={logoJugueria} alt="logoJugueria" className="fm-LogoJugueria" />
                 <div className="fm-FormularioRegistro">
-                    <h1 className="fm-FormularioRegistro-h1">Register</h1>
+                    <h1 className="fm-FormularioRegistro-h1">REGISTRO</h1>
                     <form className="fm-FormularioRegistro-Inputs">
                         <Input type="text" name="user" placeholder="User" />
                         <Input type="email" name="correo" placeholder="Correo" />
