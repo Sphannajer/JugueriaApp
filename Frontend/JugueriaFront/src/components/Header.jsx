@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
 import logo from "../assets/LogoOfi.webp";
@@ -20,7 +21,7 @@ const Navbar = () => {
         <a href="#nosotros">Menú</a>
         <a href="#productos">Contacto</a>
         <a href="#contacto">Nosotros</a>
-        <a href="#login">Iniciar Sesión</a>
+        <Link to="/">Iniciar Sesión</Link>
         <a href="#carrito" className="nav_cart">
           <FaShoppingCart className="cart_icon" />
         </a>
