@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
 import logo from "../../assets/logo.png";
-import "./Header.css";
+import "../../styles/Banner.css";
+import "../../styles/Header.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
