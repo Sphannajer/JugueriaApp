@@ -3,6 +3,7 @@ import Login from './pages/Login.jsx'
 import Register from "./pages/Register.jsx"
 import Visitanos from "./pages/Visitanos.jsx";
 import './App.css'
+import Menu from "./pages/Menu.jsx";
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/visitanos" element={<Visitanos />}/>
+      <Route path="/menu" element={<Menu />}/>
     </Routes>
     
   );
