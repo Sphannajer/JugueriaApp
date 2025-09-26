@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/Header/Header";
 import "../styles/Contactanos.css";
 import Jugos from "../assets/Jugos.webp";
 import Face from "../assets/Face.webp";
@@ -27,8 +26,8 @@ export default function Contactanos() {
           <h2>Estamos para ayudarte</h2>
           <p>
             Si tienes alguna pregunta, comentario o sugerencia, no dudes en
-            escribirnos. Rellena el formulario o contáctanos directamente a través
-            de nuestras redes sociales.
+            escribirnos. Rellena el formulario o contáctanos directamente a
+            través de nuestras redes sociales.
           </p>
           <div className="social-links">
             <a href="URL/FACEBOOK" target="_blank" rel="noopener noreferrer">
