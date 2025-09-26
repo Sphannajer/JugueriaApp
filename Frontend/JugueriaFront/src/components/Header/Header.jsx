@@ -18,7 +18,7 @@ const Navbar = () => {
         <span>Tía Julia</span>
       </div>
 
-      {/* Items (usa NavLink para react-router) */}
+      {/* Items */}
       <div
         className={`nav_items ${open ? "open" : ""}`}
         role="navigation"
