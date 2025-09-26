@@ -12,10 +12,9 @@ import Menu from "./pages/Menu.jsx";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/inicio" element={<Inicio />} />
+      <Route path="/" element={<Inicio />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/visitanos" element={<Visitanos />} />
       <Route path="/contactanos" element={<Contactanos />} />
