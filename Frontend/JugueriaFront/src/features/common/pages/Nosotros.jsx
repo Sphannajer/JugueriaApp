@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer"
-import "../styles/Nosotros.css";
-import ImgFrescura from '../assets/frescura.png'; 
-import ImgCalidad from '../assets/calidad.png';
-import ImgTradicion from '../assets/tradicion.webp';
-import ImgComunidad from '../assets/comunidad.png';
-import ImgMision from '../assets/mision.png';
-import ImgVision from '../assets/vision.png';
+import Header from "../../../components/Header/Header";
+import Footer from "../../../components/Footer/Footer"
+import "../../../styles/Nosotros.css";
+import ImgFrescura from '../../../assets/frescura.png'; 
+import ImgCalidad from '../../../assets/calidad.png';
+import ImgTradicion from '../../../assets/tradicion.webp';
+import ImgComunidad from '../../../assets/comunidad.png';
+import ImgMision from '../../../assets/mision.png';
+import ImgVision from '../../../assets/vision.png';
 
 export default function Nosotros(){
   return (

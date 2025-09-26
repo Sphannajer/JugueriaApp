@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../components/Header/Header";
-import "../styles/Contactanos.css";
-import Jugos from "../assets/Jugos.webp";
-import Face from "../assets/Face.webp";
-import Insta from "../assets/Insta.webp";
-import Wasap from "../assets/Wasap.webp";
+import Header from "../../../components/Header/Header";
+import "../../../styles/Contactanos.css";
+import Jugos from "../../../assets/Jugos.webp";
+import Face from "../../../assets/Face.webp";
+import Insta from "../../../assets/Insta.webp";
+import Wasap from "../../../assets/Wasap.webp";
 
 export default function Contactanos() {
   return (
