@@ -1,0 +1,178 @@
+.about-page-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hero-about-section {
+  background-color: #e6f7d9; 
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  overflow: hidden; 
+  position: relative;
+}
+
+.hero-content {
+  flex: 1;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+.tia-julia-illustration {
+  width: 300px;
+  height: 300px;
+  background-image: url("../assets/tiajulia.webp"); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(10%); 
+  opacity: 0.8; 
+}
+
+.values-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.value-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.value-item span {
+  font-size: 3rem; 
+}
+
+.value-item p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+.mission-vision-section {
+  display: flex;
+  flex-direction: column; 
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.mission-card,
+.vision-card {
+  background-color: #fcecd7;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.mission-card .section-title,
+.vision-card .section-title {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain; 
+    margin-bottom: 0.5rem; 
+}
+
+.mission-icon,
+.vision-icon {
+    width: 80px; 
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Media Queries para Responsividad */
+@media (min-width: 768px) {
+  .hero-about-section {
+    flex-direction: row; 
+    text-align: left;
+    padding: 4rem 3rem;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-description {
+    margin-left: 0;
+  }
+
+  .tia-julia-illustration {
+    position: relative;
+    transform: none; 
+    width: 400px;
+    height: 400px;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .mission-vision-section {
+    flex-direction: row;
+  }
+}
