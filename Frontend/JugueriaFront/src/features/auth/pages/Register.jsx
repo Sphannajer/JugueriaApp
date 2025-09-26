@@ -1,8 +1,8 @@
-import { Button } from "../components/Login/Button";
+import { Button } from "../../../components/Login/Button";
 import { Link } from "react-router-dom";
-import "../styles/Register.css";
-import logoJugueria from "../assets/logoOfi.webp";
-import { Input } from "../components/Login/Input";
+import "../../../styles/Register.css";
+import logoJugueria from "../../../assets/logoOfi.webp";
+import { Input } from "../../../components/Login/Input";
 
 export default function Register() {
   return (
@@ -24,10 +24,11 @@ export default function Register() {
               placeholder="Contraseña"
             />
             <Input
-              type="password"
-              name="segundaContra"
-              placeholder="Confirmar Contraseña"
+              type="number"
+              name="telefono"
+              placeholder="Celular"
             />
+            <Input type="text" name="direccion" placeholder="Direccion"/>
             <Button text="Registrar" type="submit" />
           </form>
         </div>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/Cart/Sidebar";
-import ProductGrid from "../components/Cart/ProductGrid";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import "../styles/Menu.css";
-import { products as initialProducts } from "../model/productsData";
+import Sidebar from "../../../components/Cart/Sidebar";
+import ProductGrid from "../../../components/Cart/ProductGrid";
+import Header from "../../../components/Header/Header";
+import Footer from "../../../components/Footer/Footer";
+import "../../../styles/Menu.css";
+import { products as initialProducts } from "../services/productsData";
 
 function Menu() {
   const [searchTerm, setSearchTerm] = useState("");

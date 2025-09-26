@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header/Header";
-import "../styles/Visitanos.css";
-import Logo from "../assets/LogoOfi.webp";
-import Carrito from "../assets/Carrito.webp";
-import Jugos from "../assets/Jugos.webp";
-import Mapa from "../assets/Mapa.webp";
-import Interior from "../assets/Interior.webp";
-import Face from "../assets/Face.webp";
-import Insta from "../assets/Insta.webp";
-import Wasap from "../assets/Wasap.webp";
-import Footer from "../components/Footer/Footer";
+import Header from "../../../components/Header/Header";
+import "../../../styles/Visitanos.css";
+import Logo from "../../../assets/LogoOfi.webp";
+import Carrito from "../../../assets/Carrito.webp";
+import Jugos from "../../../assets/Jugos.webp";
+import Mapa from "../../../assets/Mapa.webp";
+import Interior from "../../../assets/Interior.webp";
+import Face from "../../../assets/Face.webp";
+import Insta from "../../../assets/Insta.webp";
+import Wasap from "../../../assets/Wasap.webp";
+import Footer from "../../../components/Footer/Footer";
 
 export default function Visitanos() {
   return (

@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "../components/Header/Header.jsx";
-import Banner from "../components/Banner/Banner.jsx";
-import "../styles/Home.css";
-import jugoPapaya from "../assets/papaya.jpg";
-import jugoFresa from "../assets/fresa.jpg";
-import jugoNaranja from "../assets/naranja.jpg";
-import jugoMango from "../assets/mango.jpg";
-import jugoEspecial from "../assets/especial.webp";
-import sandwich from "../assets/sandwich.jpg";
-import Footer from "../components/Footer/Footer.jsx";
+import Header from "../../../components/Header/Header.jsx";
+import Banner from "../../../components/Banner/Banner.jsx";
+import "../../../styles/Home.css";
+import jugoPapaya from "../../../assets/papaya.jpg";
+import jugoFresa from "../../../assets/fresa.jpg";
+import jugoNaranja from "../../../assets/naranja.jpg";
+import jugoMango from "../../../assets/mango.jpg";
+import jugoEspecial from "../../../assets/especial.webp";
+import sandwich from "../../../assets/sandwich.jpg";
+import Footer from "../../../components/Footer/Footer.jsx";
 
 const Inicio = () => {
   return (

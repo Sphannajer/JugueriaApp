@@ -1,8 +1,8 @@
-import { Button } from "../components/Login/Button";
+import { Button } from "../../../components/Login/Button";
 import { Link } from "react-router-dom";
-import "../styles/Login.css";
-import logoJugueria from "../assets/logoOfi.webp";
-import { Input } from "../components/Login/Input";
+import "../../../styles/Login.css";
+import logoJugueria from "../../../assets/logoOfi.webp";
+import { Input } from "../../../components/Login/Input";
 
 export default function Login() {
   return (
