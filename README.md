@@ -29,7 +29,7 @@ La plataforma permite a los usuarios **registrarse, iniciar sesión, explorar el
 - **Maven** → Gestión de dependencias y compilación.
 
 ### 🗄️ Base de Datos
-- **MySQL / Oracle** (según entorno de despliegue).
+- **PostgreSQL** (según entorno de despliegue).
 - **JPA/Hibernate** → Mapeo objeto-relacional (ORM).
 
 ---
