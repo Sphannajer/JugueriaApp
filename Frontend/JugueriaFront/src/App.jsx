@@ -6,6 +6,7 @@ import Register from "./pages/Register.jsx";
 import Inicio from "./pages/Home.jsx";
 import Visitanos from "./pages/Visitanos.jsx";
 import Contactanos from "./pages/Contactanos.jsx";
+import Nosotros from './pages/Nosotros.jsx';
 import "./App.css";
 import Menu from "./pages/Menu.jsx";
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/menu" element={<Menu />} />
       <Route path="/visitanos" element={<Visitanos />} />
       <Route path="/contactanos" element={<Contactanos />} />
+      <Route path="/nosotros" element={<Nosotros />} />
     </Routes>
   );
 }
