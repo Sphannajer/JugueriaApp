@@ -24,16 +24,23 @@
 }
 
 /* ITEMS */
-.nav_items a {
+.nav_items a,
+.nav_items button { 
   margin: 15px;
   color: black;
   position: relative;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+  
+  /* Reset CSS del botón para que parezca un enlace */
+  background: none;
+  border: none;
+  padding: 0; 
+  cursor: pointer;
 }
 
-.nav_items a:hover {
+.nav_items  a:hover {
   color: #ff5722;
 }
 
@@ -58,6 +65,16 @@
   font-size: 28px;
   color: black;
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav_items button.nav_link {
+    /* Por ejemplo, un botón destacado */
+    background-color: #ff5722; 
+    color: white; 
+    font-size: 28px;
+    border-radius: 5px;
+    padding: 1px 5px;
+    margin: 0 5px; 
 }
 
 /* Responsive */
@@ -89,5 +106,9 @@
   .nav_items a {
     font-size: 18px;
     margin: 20px;
+  }
+  .nav_items button.nav_link {
+    font-size: 25px;
+    padding: 4px 5px;
   }
 }

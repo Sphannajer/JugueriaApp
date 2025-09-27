@@ -1,14 +1,29 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
+import { getToken, logOut } from "../../api/authService";
 import logo from "../../assets/LogoOfi.webp";
 import "../Header/Header.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
   const toggle = () => setOpen((v) => !v);
   const closeMenu = () => setOpen(false);
+
+  useEffect(() => {
+    setIsLogged(getToken() ? true : false);
+  }, [navigate]);
+
+  // Funcion para cerrar sesion
+  const handleLogOut = () => {
+    logOut(); 
+    setIsLogged(false); // Actualiza el estado local
+    closeMenu(); // Cierra el menú móvil
+    navigate('/inicio'); // Lo que va hacer este apartado es rdiriguir
+  };
 
   return (
     <nav className="navbar">
@@ -56,13 +71,28 @@ const Navbar = () => {
           Visítanos
         </NavLink>
 
-        <NavLink to="/login" className="nav_link">
-          Iniciar Sesión
-        </NavLink>
-
         <NavLink to="/carrito" className="nav_cart">
           <FaShoppingCart className="cart_icon" />
         </NavLink>
+        {isLogged ? (
+          // Si está logueado: Muestra el Boton de Cerrar Sesión
+          <button
+            onClick={handleLogOut}
+            className="nav_link"
+          
+          >
+            Cerrar Sesión
+          </button>
+        ) : (
+          // Si NO está logueado: Muestra lo que es el inicio de la pagina
+          <NavLink
+            to="/login"
+            onClick={closeMenu}
+            className="nav_link"
+          >
+            Iniciar Sesión
+          </NavLink>
+        )}
       </div>
 
       {/* Toggle (hamburguesa) */}
