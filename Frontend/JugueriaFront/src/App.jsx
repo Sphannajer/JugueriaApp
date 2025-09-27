@@ -7,12 +7,13 @@ import Contactanos from "./features/common/pages/Contactanos.jsx";
 import Nosotros from './features/common/pages/Nosotros.jsx';
 import "./styles/App.css";
 import Menu from "./features/products/pages/Menu.jsx";
+import LoginGuard from "./features/guards/loginGuard.jsx";
 
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<LoginGuard><Login /></LoginGuard>} />
+      <Route path="/register" element={<LoginGuard><Register /></LoginGuard>} />
       <Route path="/" element={<Inicio />} />
       <Route path="/inicio" element={<Inicio />} />
       <Route path="/menu" element={<Menu />} />
