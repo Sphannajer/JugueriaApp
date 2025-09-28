@@ -19,7 +19,7 @@ const Footer = () => {
       <div className="footer-section footer-nav">
         <ul>
           <li>
-            <NavLink to="/inicio">Inicio</NavLink>
+            <NavLink to="/">Inicio</NavLink>
           </li>
           <li>
             <NavLink to="/menu">Menú</NavLink>

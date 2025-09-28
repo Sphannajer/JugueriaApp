@@ -9,7 +9,7 @@ const Banner = () => {
       <div className="banner_content">
         <h1>Bienvenido a Tía Julia Juguería</h1>
         <p>Desde 1974, en cada vaso hay amor, historia y sabor auténtico.</p>
-        <a href="" className="banner_btn">
+        <a href="/menu" className="banner_btn">
           Ver nuestro menú
         </a>
       </div>
