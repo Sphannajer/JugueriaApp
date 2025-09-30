@@ -122,15 +122,14 @@ const Register = () => {
                         required 
                         onChange={(e) => setDireccion(e.target.value)}
                     />
-                    
-                    {/* Visualización del error de registro */}
-                    {errMsj && <p className="error-message">{errMsj}</p>}
 
                     <Button text="Registrar" type="submit" />
                 </form>
                 <Link to="/login" className="fm-Formulario-LinkLogin">
                     ¿Ya tienes cuenta? Inicia Sesión
                 </Link>
+                 {/* Visualización del error de registro */}
+                {errMsj && <p className="error-message">{errMsj}</p>}
             </div>
         </div>
     );
