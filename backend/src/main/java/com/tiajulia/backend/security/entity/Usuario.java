@@ -1,6 +1,7 @@
 package com.tiajulia.backend.security.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 
 import java.util.HashSet;
@@ -20,6 +21,9 @@ public class Usuario {
     private String contrasena;
     private String celular;
     private String direccion;
+    private String tokenVerificacion;
+    private LocalDateTime fechaExpiracionToken;
+    private boolean verificado = false;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol",
             joinColumns = @JoinColumn(name = "usuario_id"),
@@ -100,5 +104,25 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public String getTokenVerificacion() { return tokenVerificacion;
+    }
+
+    public void setTokenVerificacion(String tokenVerificacion) { this.tokenVerificacion = tokenVerificacion;
+    }
+
+    public LocalDateTime getFechaExpiracionToken() { return fechaExpiracionToken;
+    }
+
+    public void setFechaExpiracionToken(LocalDateTime fechaExpiracionToken) { this.fechaExpiracionToken = fechaExpiracionToken;
+    }
+
+    public boolean isVerificado() {
+        return verificado;
+    }
+
+    public void setVerificado(boolean verificado) {
+        this.verificado = verificado;
     }
 }
