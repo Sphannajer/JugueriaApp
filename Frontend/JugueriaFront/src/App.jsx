@@ -8,6 +8,7 @@ import Nosotros from './features/common/pages/Nosotros.jsx';
 import "./styles/App.css";
 import Menu from "./features/products/pages/Menu.jsx";
 import LoginGuard from "./features/guards/loginGuard.jsx";
+import PantallaVerificacionCorreo from "./features/auth/pages/PantallaVerificacionCorreo.jsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/visitanos" element={<Visitanos />} />
       <Route path="/contactanos" element={<Contactanos />} />
       <Route path="/nosotros" element={<Nosotros />} />
+      <Route path="/pantalla" element={<PantallaVerificacionCorreo />} />    
     </Routes>
   );
 }
