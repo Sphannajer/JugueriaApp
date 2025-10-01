@@ -8,6 +8,10 @@ import jugoNaranja from "../../../assets/naranja.jpg";
 import jugoMango from "../../../assets/mango.jpg";
 import jugoEspecial from "../../../assets/especial.webp";
 import sandwich from "../../../assets/sandwich.jpg";
+import Tyrone from "../../../assets/tyrone.jpg";
+import Emilio from "../../../assets/emilio.avif";
+import Eddie from "../../../assets/eddie.jpg";
+import Montse from "../../../assets/montse.png";
 import Footer from "../../../components/Footer/Footer.jsx";
 
 const Inicio = () => {
@@ -96,6 +100,46 @@ const Inicio = () => {
               <p>📍 Jr. Huanuco Mz 32 Mercado</p>
               <p>📞 +51 991-188-332</p>
               <p>🕒 Lunes a Domingo: 8 A.M. a 3 P.M.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Parte de testimonios */}
+        <section className="testimonials">
+          <h2>Testimonios de clientes</h2>
+          <div className="clients_container">
+            <div className="client_card">
+              <img src={Tyrone} alt="Tyrone" />
+              <div className="client_info">
+                <h3>Tyrone Gonzales</h3>
+                <p>
+                  Simplemente delicioso, sorprende la calidad para ser un
+                  mercado.
+                </p>
+              </div>
+            </div>
+
+            <div className="client_card">
+              <img src={Emilio} alt="Emilio" />
+              <div className="client_info">
+                <h3>Emiliano Escobar</h3>
+                <p>Lugar limpio y la calidad de insumos son excelentes.</p>
+              </div>
+            </div>
+
+            <div className="client_card">
+              <img src={Eddie} alt="Eddie" />
+              <div className="client_info">
+                <h3>Edward Vedder</h3>
+                <p>Bueno, bonito y barato, recomendado al 100%</p>
+              </div>
+            </div>
+            <div className="client_card">
+              <img src={Montse} alt="Montse" />
+              <div className="client_info">
+                <h3>Montserrat Lafuerte</h3>
+                <p>Me gustó mucho la atención y la comida.</p>
+              </div>
             </div>
           </div>
         </section>

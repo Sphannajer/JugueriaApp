@@ -53,7 +53,7 @@ export const logOut = () => {
 
 // LÓGICA DE CONEXIÓN HTTP (Mapea el AuthService)
 
-//Para el nuevo usuario
+// Para el nuevo usuario
 export const registerUser = async (nuevoUsuario) => {
     const response = await fetch(AUTH_URL + 'nuevo', {
         method: 'POST',
@@ -62,14 +62,27 @@ export const registerUser = async (nuevoUsuario) => {
     });
 
     if (!response.ok) {
+        // La petición falló (400, 401, 500, etc.)
+
+        let errorMessage = `Fallo en el registro: ${response.statusText} (${response.status})`;
 
         try {
+            // 1. Intenta leer el cuerpo JSON de la respuesta de error
             const errorData = await response.json();
-            throw new Error(errorData.mensaje || 'Error en el registro.');
-        } catch {
-            // Si falla leer el JSON (cuerpo vacío), lanza un error claro.
-            throw new Error(`Fallo en el registro: ${response.statusText} (${response.status})`);
+            
+            // 2. Si el backend envió el campo 'mensaje', úsalo
+            if (errorData && errorData.mensaje) {
+                errorMessage = errorData.mensaje; 
+            }
+            
+        } catch (e) {
+            // Si hay un error al leer el JSON (ej: el cuerpo estaba vacío o no era JSON)
+            // Se mantiene el mensaje por defecto (Fallo en el registro: 400)
+            console.error("No se pudo parsear el JSON de error:", e);
         }
+        
+        // 3. Lanza el mensaje de error más específico que encontramos
+        throw new Error(errorMessage);
 
     }
     // Retorna los datos de éxito

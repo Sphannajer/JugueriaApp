@@ -19,10 +19,10 @@ const Navbar = () => {
 
   // Funcion para cerrar sesion
   const handleLogOut = () => {
-    logOut(); 
+    logOut();
     setIsLogged(false); // Actualiza el estado local
     closeMenu(); // Cierra el menú móvil
-    navigate('/inicio'); // Lo que va hacer este apartado es rdiriguir
+    navigate("/inicio"); // Lo que va hacer este apartado es rdiriguir
   };
 
   return (
@@ -40,7 +40,7 @@ const Navbar = () => {
         aria-hidden={!open}
       >
         <NavLink
-          to="/inicio"
+          to="/"
           onClick={closeMenu}
           className={({ isActive }) => (isActive ? "active" : "")}
         >
@@ -76,20 +76,12 @@ const Navbar = () => {
         </NavLink>
         {isLogged ? (
           // Si está logueado: Muestra el Boton de Cerrar Sesión
-          <button
-            onClick={handleLogOut}
-            className="nav_link"
-          
-          >
+          <button onClick={handleLogOut} className="nav_link">
             Cerrar Sesión
           </button>
         ) : (
           // Si NO está logueado: Muestra lo que es el inicio de la pagina
-          <NavLink
-            to="/login"
-            onClick={closeMenu}
-            className="nav_link"
-          >
+          <NavLink to="/login" onClick={closeMenu} className="nav_link">
             Iniciar Sesión
           </NavLink>
         )}
