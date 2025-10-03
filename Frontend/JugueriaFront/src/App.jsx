@@ -10,6 +10,16 @@ import Menu from "./features/products/pages/Menu.jsx";
 import LoginGuard from "./features/guards/loginGuard.jsx";
 import PantallaVerificacionCorreo from "./features/auth/pages/PantallaVerificacionCorreo.jsx";
 
+import DashboardLayout from './components/Administrador/DashboardLayout.jsx';
+
+import DashboardView from './features/common/pages/Dashboard.jsx'; 
+import VentasAdminView from './features/common/pages/VentasAdmin.jsx';
+import InventarioAdminView from './features/common/pages/InventarioAdmin.jsx';
+import MenuProducAdminView from './features/common/pages/MenuProducAdmin.jsx';
+import ClientesAdminView from './features/common/pages/ClientesAdmin.jsx';
+import FinanzasAdminView from './features/common/pages/FinanzasAdmin.jsx';
+import PromocionesAdminView from './features/common/pages/PromocionesAdmin.jsx';
+
 function App() {
   return (
     <Routes>
@@ -21,7 +31,35 @@ function App() {
       <Route path="/visitanos" element={<Visitanos />} />
       <Route path="/contactanos" element={<Contactanos />} />
       <Route path="/nosotros" element={<Nosotros />} />
-      <Route path="/pantalla" element={<PantallaVerificacionCorreo />} />    
+      <Route path="/pantalla" element={<PantallaVerificacionCorreo />} />
+
+      <Route path="/admin" element={<DashboardLayout />}>
+
+
+        <Route index element={<DashboardView />} />
+
+        {/* Ruta Hija 2: VENTAS (/administrativo/ventas) */}
+        <Route path="ventas" element={<VentasAdminView />} />
+
+        {/* Ruta Hija 3: INVENTARIO (/administrativo/inventario) */}
+        <Route path="inventario" element={<InventarioAdminView />} />
+
+        {/* Ruta Hija 4: MENÚ DE PRODUCTOS (/administrativo/productos) */}
+        <Route path="productos" element={<MenuProducAdminView />} />
+
+        {/* Ruta Hija 5: CLIENTES (/administrativo/clientes) */}
+        <Route path="clientes" element={<ClientesAdminView />} />
+
+        {/* Ruta Hija 6: FINANZAS (/administrativo/finanzas) */}
+        <Route path="finanzas" element={<FinanzasAdminView />} />
+
+        {/* Ruta Hija 7: PROMOCIONES (/administrativo/promociones) */}
+        <Route path="promociones" element={<PromocionesAdminView />} />
+
+        {/* Puedes agregar una ruta para Configuración si tienes un componente de vista */}
+        <Route path="configuracion" element={<div>Configuración View</div>} />
+
+      </Route>
     </Routes>
   );
 }
