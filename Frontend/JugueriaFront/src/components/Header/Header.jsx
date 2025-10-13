@@ -74,6 +74,11 @@ const Navbar = () => {
         <NavLink to="/carrito" className="nav_cart">
           <FaShoppingCart className="cart_icon" />
         </NavLink>
+
+        <NavLink to="/perfil" className="icon">
+          <FaUserCircle size={30} />
+        </NavLink>
+
         {isLogged ? (
           // Si está logueado: Muestra el Boton de Cerrar Sesión
           <button onClick={handleLogOut} className="nav_link">
