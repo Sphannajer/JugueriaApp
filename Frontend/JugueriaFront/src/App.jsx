@@ -6,6 +6,7 @@ import Visitanos from "./features/common/pages/Visitanos.jsx";
 import Contactanos from "./features/common/pages/Contactanos.jsx";
 import Nosotros from "./features/common/pages/Nosotros.jsx";
 import Perfil from "./features/common/pages/Perfil.jsx";
+import Pago from "./features/common/pages/Pago.jsx";
 import "./styles/App.css";
 import Menu from "./features/products/pages/Menu.jsx";
 import LoginGuard from "./features/guards/loginGuard.jsx";
@@ -48,6 +49,7 @@ function App() {
       <Route path="/nosotros" element={<Nosotros />} />
       <Route path="/pantalla" element={<PantallaVerificacionCorreo />} />
       <Route path="/perfil" element={<Perfil />} />
+      <Route path="/pago" element={<Pago />} />
 
       <Route path="/admin" element={<DashboardLayout />}>
         <Route index element={<DashboardView />} />

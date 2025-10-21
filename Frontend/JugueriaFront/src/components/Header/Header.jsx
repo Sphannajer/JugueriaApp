@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { getToken, logOut } from "../../api/authService";
 import logo from "../../assets/LogoOfi.webp";
 import "../Header/Header.css";
