@@ -6,7 +6,6 @@ import { createNuevoUsuario } from '../models/auth.models';
 import { registerUser, getToken } from '../../../api/authService'; // Servicio
 import { Input } from '../../../components/Login/Input';
 import { Button } from '../../../components/Login/Button';
-import logoJugueria from "../../../assets/logoOfi.webp";
 import "../../../styles/Register.css";
 
 const Register = () => {
@@ -63,7 +62,7 @@ const Register = () => {
     return (
         <body className='body'>
             <div className="fm-ContenedorDelTodo">
-                <img src={logoJugueria} alt="logoJugueria" className="fm-LogoJugueria" />
+                <img src="/images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
                 <div className="fm-FormularioRegistro">
                     <h1 className="fm-FormularioRegistro-h1">REGISTRO</h1>
 

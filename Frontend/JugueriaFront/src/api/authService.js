@@ -91,28 +91,39 @@ export const registerUser = async (nuevoUsuario) => {
 
 //Para Login
 export const loginUser = async (loginUsuario) => {
-    const response = await fetch(AUTH_URL + 'login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginUsuario),
-    });
+  const response = await fetch(AUTH_URL + 'login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(loginUsuario),
+  });
 
-    if (!response.ok) {
+  const data = await response.json();
 
-        try {
-            const errorData = await response.json();
-            // Si pudimos leer el JSON, usamos el mensaje del backend.
-            throw new Error(errorData.mensaje || 'Credenciales incorrectas.');
-        } catch {
-            // Si falla leer el JSON (cuerpo vacío en el 401), lanzamos un mensaje claro.
-            throw new Error(`Fallo de autenticación: ${response.statusText} (${response.status})`);
-        }
+  if (!response.ok) {
+    throw new Error(data.mensaje || 'Error en login');
+  }
 
-    }
-
-    const data = await response.json(); // Data es tu JwtDTO
-    setToken(data.token);
-
-
-    return data;
+  return data; // data.mensaje = "Código enviado al correo registrado."
 };
+
+export const verifyCode = async (email, codigo) => {
+  const response = await fetch(AUTH_URL + 'verificar-codigo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, codigo }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.mensaje || 'Código incorrecto o expirado');
+  }
+
+  // ✅ Aquí ya viene el token, así que lo guardamos
+  if (data.token) {
+    setToken(data.token);
+  }
+
+  return data;
+};
+
