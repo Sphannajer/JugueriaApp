@@ -1,99 +1,130 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { createLoginUsuario } from '../models/auth.models'; // 
-import { loginUser, getToken, getUserName } from '../../../api/authService';
-
-import { Input } from "../../../components/Login/Input"; // Componente de UI
-import { Button } from "../../../components/Login/Button"; // Componente de UI
-import logoJugueria from "../../../../public/images/logo.png";
+import React, { useState } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
+import { createLoginUsuario } from '../models/auth.models';
+import { loginUser, verifyCode } from '../../../api/authService';
+import { Input } from "../../../components/Login/Input";
+import { Button } from "../../../components/Login/Button";
 import "../../../styles/Login.css";
 
 const Login = () => {
-    const [nombreUsuario, setNombreUsuario] = useState('');
-    const [contrasena, setContrasena] = useState('');
-    const [errMsj, setErrMsj] = useState('');
+  const [nombreUsuario, setNombreUsuario] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const [email, setEmail] = useState('');
+  const [codigo, setCodigo] = useState('');
+  const [mostrarVerificacion, setMostrarVerificacion] = useState(false);
+  const [errMsj, setErrMsj] = useState('');
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrMsj('');
 
-    useEffect(() => {
-        if (getToken()) {
-            navigate('/');
-        }
-    }, [navigate]);
+    try {
+      const loginDTO = createLoginUsuario(nombreUsuario, contrasena);
+      const data = await loginUser(loginDTO);
 
-    const handleSubmit = async (e) => {
-        console.log("1. Función handleSubmit iniciada.");//depuracion
-        e.preventDefault();
-        setErrMsj('');
+      if (data.mensaje === "Código enviado al correo registrado.") {
+        setEmail(data.email);
+        setMostrarVerificacion(true);
+      }
+    } catch (error) {
+      console.error("Error login:", error);
+      setErrMsj(error.message || 'Error en login');
+    }
+  };
 
-        try {
-            const loginUsuarioDTO = createLoginUsuario(nombreUsuario, contrasena);
-            console.log("2. DTO creado:", loginUsuarioDTO);//depuracion2
+  const handleVerificarCodigo = async () => {
+    setErrMsj('');
+    try {
+      if (!codigo) {
+        setErrMsj("Ingresa el código de verificación");
+        return;
+      }
 
-            const data = await loginUser(loginUsuarioDTO);
+      // llamar al backend
+      const data = await verifyCode(email, codigo);
+      console.log("Respuesta verifyCode:", data);
 
-            console.log("3. Login exitoso. Data recibida:", data); //depuracion 3
-            const user = getUserName();
-            alert('Bienvenido ' + user);
-            navigate('/');
+      // ⚠️ El backend devuelve { token: "..." }
+      if (!data || !data.token) {
+        setErrMsj("Token no recibido del backend");
+        return;
+      }
 
-        } catch (error) {
-            console.error("4. Error en el login:", error.message, error); //error si en caso saldra en la consola
-            const message = error.message || 'Error desconocido';
-            setErrMsj(message);
-        }
-    };
+      // Guardar token manualmente
+      localStorage.setItem("AuthToken", data.token);
 
-    return (
-        <body className='body'>
+      alert("Inicio de sesión exitoso ✅");
+      setMostrarVerificacion(false);
 
+      navigate("/"); // redirigir
+    } catch (error) {
+      console.error("Error verificación:", error);
+      setErrMsj(error.message || "Código incorrecto o expirado");
+    }
+  };
 
-            <div className="fm-ContenedorDelTodoLogin">
-                <img
-                    src={logoJugueria}
-                    alt="logoJugueria"
-                    className="fm-LogoJugueria"
-                />
-                <div className="fm-Formulario">
-                    <h1 className="fm-Formulario-h1">LOGIN</h1>
-                    <strong className="fm-Formulario-Strong">
-                        ¿Eres nuevo?{" "}
-                        <Link to="/register" className="fm-Formulario-LinkRegistro">
-                            Regístrate aquí para empezar a pedir
-                        </Link>{" "}
-                    </strong>
+  return (
+    <div className="body">
+      <div className="fm-ContenedorDelTodoLogin">
+        <img src="../../../../images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
+        <div className="fm-Formulario">
+          <h1 className="fm-Formulario-h1">LOGIN</h1>
+          <strong className="fm-Formulario-Strong">
+            ¿Eres nuevo?{" "}
+            <Link to="/register" className="fm-Formulario-LinkRegistro">
+              Regístrate aquí para empezar a pedir
+            </Link>{" "}
+          </strong>
 
+          <form className="fm-Formulario-inputs" onSubmit={handleSubmit}>
+            <Input type="text" placeholder="Usuario" required onChange={(e) => setNombreUsuario(e.target.value)} />
+            <Input type="password" placeholder="Contraseña" required onChange={(e) => setContrasena(e.target.value)} />
+            <Button text="Empezar a Pedir" type="submit" />
+            <Link to="/register" className="fm-Formulario-LinkOlvido">
+              ¿Olvidaste la contraseña?
+            </Link>
+          </form>
 
-                    <form className="fm-Formulario-inputs" onSubmit={handleSubmit}>
+          {errMsj && <p className="error-message">{errMsj}</p>}
+        </div>
+      </div>
 
-                        <Input
-                            type="text"
-                            name="user"
-                            placeholder="User"
-                            required
-                            onChange={(e) => setNombreUsuario(e.target.value)}
-                        />
-                        <Input
-                            type="password"
-                            name="Contrasenia"
-                            placeholder="Contraseña"
-                            required
-                            onChange={(e) => setContrasena(e.target.value)}
-                        />
+      {/* Modal de verificación */}
+      {mostrarVerificacion && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Verificación de código</h3>
+            <p>Se envió un código a tu correo registrado.</p>
+            <Input
+              type="text"
+              placeholder="Código de verificación"
+              value={codigo}
+              onChange={(e) => setCodigo(e.target.value)}
+            />
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
+              {/* 🔹 Botón Verificar */}
+              <button
+                style={{ cursor: 'pointer' }}
+                onClick={(e) => { e.preventDefault(); handleVerificarCodigo(); }}
+              >
+                Verificar
+              </button>
 
-
-
-                        <Button text="Empezar a Pedir" type="submit" />
-                        <Link to="/register" className="fm-Formulario-LinkOlvido">
-                            ¿Olvidaste la contraseña?
-                        </Link>
-
-                        {errMsj && <p className="error-message">{errMsj}</p>}
-                    </form>
-                </div>
+              {/* 🔹 Botón Cancelar */}
+              <button
+                style={{ cursor: 'pointer' }}
+                onClick={(e) => { e.preventDefault(); setMostrarVerificacion(false); }}
+              >
+                Cancelar
+              </button>
             </div>
-        </body>
-    );
-}
+            {errMsj && <p className="error-message">{errMsj}</p>}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Login;

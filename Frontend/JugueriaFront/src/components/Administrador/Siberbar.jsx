@@ -1,4 +1,4 @@
-import logoJugueria from '../../../public/images/logo.png';
+
 import { Link } from 'react-router-dom';
 
 // La lista de enlaces de navegación
@@ -18,7 +18,7 @@ export default function Sidebar() {
         <aside className="sidebar">
             <div className="sidebar-logo">
                 <div className="logo-placeholder">
-                    <img src={logoJugueria} alt="logoOficial" className="logo-img" />
+                    <img src="/images/logo.png" alt="logoOficial" className="logo-img" />
                 </div>
             </div>
 
