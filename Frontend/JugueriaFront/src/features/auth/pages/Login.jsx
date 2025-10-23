@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { createLoginUsuario } from '../models/auth.models';
 import { loginUser, verifyCode } from '../../../api/authService';
 import { Input } from "../../../components/Login/Input";
@@ -24,7 +24,7 @@ const Login = () => {
       const data = await loginUser(loginDTO);
 
       if (data.mensaje === "Código enviado al correo registrado.") {
-        setEmail(data.email); 
+        setEmail(data.email);
         setMostrarVerificacion(true);
       }
     } catch (error) {
@@ -67,14 +67,23 @@ const Login = () => {
   return (
     <div className="body">
       <div className="fm-ContenedorDelTodoLogin">
-        <img src="/images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
+        <img src="../../../../images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
         <div className="fm-Formulario">
           <h1 className="fm-Formulario-h1">LOGIN</h1>
+          <strong className="fm-Formulario-Strong">
+            ¿Eres nuevo?{" "}
+            <Link to="/register" className="fm-Formulario-LinkRegistro">
+              Regístrate aquí para empezar a pedir
+            </Link>{" "}
+          </strong>
 
           <form className="fm-Formulario-inputs" onSubmit={handleSubmit}>
             <Input type="text" placeholder="Usuario" required onChange={(e) => setNombreUsuario(e.target.value)} />
             <Input type="password" placeholder="Contraseña" required onChange={(e) => setContrasena(e.target.value)} />
-            <Button text="Iniciar sesión" type="submit" />
+            <Button text="Empezar a Pedir" type="submit" />
+            <Link to="/register" className="fm-Formulario-LinkOlvido">
+              ¿Olvidaste la contraseña?
+            </Link>
           </form>
 
           {errMsj && <p className="error-message">{errMsj}</p>}
