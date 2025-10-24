@@ -1,6 +1,11 @@
 package com.tiajulia.backend.security.entity;
 
 import jakarta.persistence.*;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 import java.util.HashSet;
@@ -100,5 +105,50 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    // ✅ Validación interna con Apache Commons
+    public boolean isValid() {
+        return StringUtils.isNotBlank(nombre)
+                && StringUtils.isNotBlank(nombreUsuario)
+                && StringUtils.isNotBlank(email)
+                && StringUtils.isNotBlank(contrasena);
+    }
+
+    // ✅ Equals y HashCode profesionales
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario)) return false;
+
+        Usuario that = (Usuario) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(nombreUsuario, that.nombreUsuario)
+                .append(email, that.email)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(nombreUsuario)
+                .append(email)
+                .toHashCode();
+    }
+
+    // ✅ ToString detallado con estilo JSON
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("id", id)
+                .append("nombre", nombre)
+                .append("nombreUsuario", nombreUsuario)
+                .append("email", email)
+                .append("celular", celular)
+                .append("direccion", direccion)
+                .toString();
     }
 }
