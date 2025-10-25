@@ -1,0 +1,290 @@
+.body {
+    background-image: url('../assets/FondoPrincipalLR.webp');
+    background-repeat: no-repeat;
+    background-position: 50% 120%;
+    background-size: 50rem;
+}
+
+.fm-ContenedorDelTodoLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.fm-Formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 17rem;
+    height: 28rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.603);
+    padding: 1rem;
+}
+
+.fm-LogoJugueria {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.fm-Formulario-h1 {
+    font-family: system-ui, Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    position: relative;
+
+}
+
+.fm-Formulario-Strong {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 10;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.fm-Formulario-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+}
+
+.fm-Formulario-LinkRegistro {
+    text-decoration: none;
+    color: #F87500;
+    font-weight: bold;
+
+}
+
+.fm-Formulario-LinkOlvido {
+    text-decoration: none;
+    color: #003391;
+    font-weight: bold;
+    align-self: center;
+    top: -10px;
+    position: relative;
+}
+
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+}
+
+
+@media (min-width:375px) {
+    body {
+        background-position: 50% 130%;
+        background-size: 60rem;
+    }
+
+    .fm-Formulario {
+        width: 20rem;
+        height: 27rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+@media (min-width:768px) {
+    body {
+        background-position: 50% 120%;
+        background-size: 75rem;
+    }
+
+    .fm-Formulario {
+        width: 25rem;
+        height: 32rem; 
+    }
+
+    .fm-LogoJugueria {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .fm-Formulario-h1 {
+        font-size: 2.6rem;
+    }
+
+    .fm-Formulario-Strong {
+        font-size: 1rem;
+    }
+
+    .fm-Formulario-LinkOlvido {
+        align-self: start;
+        top: -20px;
+        position: relative;
+    }
+
+
+
+}
+
+@media (min-width:800px) {
+    body {
+        background-position: 50% 140%;
+        background-size: 85rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+@media (min-width:1024px) {
+    body {
+        background-position: 50% 190%;
+        background-size: 80rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .fm-Formulario-Strong {
+        font-size: 1.2rem;
+    }
+
+}
+
+@media (min-width:1120px) {
+    body {
+        background-position: 50% 200%;
+        background-size: 80rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+@media (min-width:1200px) {
+    body {
+        background-position: 50% 310%;
+        background-size: 90rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1436px) {
+    body {
+        background-position: 50% 310%;
+        background-size: 106rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1550px) {
+    body {
+        background-position: 50% 210%;
+        background-size: 110rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .fm-Formulario-Strong {
+        font-size: 1.1rem;
+        display: block;
+    }
+
+    .fm-Formulario {
+        width: 30rem;
+        height: 30rem;
+    }
+
+    .fm-Formulario-inputs {
+        gap: 30px;
+
+    }
+}
+
+@media (min-width:1640px) {
+    body {
+        background-position: 50% 200%;
+        background-size: 110rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1700px) {
+    body {
+        background-position: 50% 250%;
+        background-size: 110rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+
+@media (min-width:1900px) {
+    body {
+        background-position: 50% -50%;
+        background-size: 120rem;
+    }
+
+    .fm-FormularioRegistro {
+        width: 30rem;
+        height: 33rem;
+
+    }
+
+    .fm-LogoJugueria {
+        width: 10rem;
+        height: 10rem;
+    }
+}
