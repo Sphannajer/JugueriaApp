@@ -72,6 +72,12 @@ public class MainSecurity  {
                 .authorizeHttpRequests(auth -> auth
                         // Rutas públicas: /auth/**
                         .requestMatchers("/auth/**").permitAll()
+
+                        .requestMatchers("/api/productos").permitAll()
+                        .requestMatchers("/api/productos/**").permitAll() 
+                        .requestMatchers("/api/productos/uploads/**").permitAll()
+                        .requestMatchers("/api/categorias/**").permitAll()
+                        
                         .anyRequest().authenticated()
                 );
 
