@@ -1,0 +1,237 @@
+.body {
+    background-image: url('../assets/FondoPrincipalLR.webp');
+    background-repeat: no-repeat;
+    background-position: 50% 130%;
+    background-size: 50rem;
+}
+
+.fm-ContenedorDelTodo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.fm-FormularioRegistro {
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    height: 40rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.603);
+    padding: 1rem;
+}
+
+.fm-LogoJugueria {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.fm-FormularioRegistro-h1 {
+    font-family: system-ui, Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    top: -10px;
+    position: relative;
+}
+
+.fm-FormularioRegistro-Inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.error-message {
+    background-color: #fce4e4;
+    border: 1px solid #c00;
+    color: #c00;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    width: 90%;
+    padding: 8px;
+    margin: 10px auto;
+    font-size: 0.8rem;
+    order: 10;
+}
+
+@media (min-width:375px) {
+    body {
+        background-position: 50% 130%;
+        background-size: 60rem;
+    }
+
+    .fm-FormularioRegistro {
+        width: 20rem;
+        height: 38rem;
+        padding: 1.3rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+@media (min-width:768px) {
+    body {
+        background-position: 50% 170%;
+        background-size: 75rem;
+    }
+
+    .fm-FormularioRegistro {
+        width: 25rem;
+        height: 42rem;
+        padding: 1.5rem;
+    }
+
+    .error-message {
+        width: 80%; 
+        padding: 10px;
+        font-size: 0.9rem; 
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .fm-LogoJugueria {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .fm-FormularioRegistro-h1 {
+        font-size: 2.6rem;
+    }
+
+    .fm-FormularioRegistro-Inputs {
+        gap: 25px;
+    }
+}
+
+@media (min-width:800px) {
+    body {
+        background-position: 50% 140%;
+        background-size: 85rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+@media (min-width:1024px) {
+    body {
+        background-position: 50% 190%;
+        background-size: 80rem;
+    }
+
+    .fm-FormularioRegistro {
+        width: 30rem;
+        height: 43rem;
+        padding: 1.5rem;
+    }
+    .fm-LogoJugueria {
+        width: 7rem;
+        height: 7rem;
+    }
+
+}
+
+@media (min-width:1120px) {
+    body {
+        background-position: 50% 200%;
+        background-size: 80rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+@media (min-width:1200px) {
+    body {
+        background-position: 50% 150%;
+        background-size: 90rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1436px) {
+    body {
+        background-position: 50% 180%;
+        background-size: 95rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1550px) {
+    body {
+        background-position: 50% 10%;
+        background-size: 110rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1630px) {
+    body {
+        background-position: 50% -30%;
+        background-size: 110rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media (min-width:1700px) {
+    body {
+        background-position: 50% 250%;
+        background-size: 110rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+
+@media (min-width:1900px) {
+    body {
+        background-position: 50% -50%;
+        background-size: 120rem;
+    }
+
+    .fm-FormularioRegistro {
+        width: 30rem;
+        height: 45rem;
+        padding: 2rem;
+    }
+
+    .fm-LogoJugueria {
+        width: 10rem;
+        height: 10rem;
+    }
+}
