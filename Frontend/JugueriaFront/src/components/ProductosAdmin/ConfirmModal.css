@@ -1,0 +1,62 @@
+
+.form-modal-overlay {
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1001; 
+}
+
+.confirm-modal-content h2 {
+    color: #F44336; 
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.confirm-modal-content p {
+    margin: 15px 0 25px 0;
+    line-height: 1.4;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #bbb;
+}
+
+.btn-delete-confirm {
+    background-color: #F44336; 
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-delete-confirm:hover {
+    background-color: #d32f2f;
+}
