@@ -26,17 +26,15 @@
 .product-title {
   font-weight: bold;
   font-size: 1.25rem;
-  /* Aumentar el margen inferior del título para separarlo de la descripción */
-  margin-top: 0; /* Asegurar que no haya margen superior por defecto */
-  margin-bottom: 0.75rem; /* Separación moderada del título a la descripción */
+  margin-top: 0; 
+  margin-bottom: 0.75rem; 
 }
 
 .product-description {
   font-size: 0.875rem;
   color: #555;
-  /* Reducir el margen inferior para que el precio no esté demasiado lejos */
-  margin-top: 0; /* Asegurar que no haya margen superior por defecto */
-  margin-bottom: 0.75rem; /* Separación de la descripción al precio */
+  margin-top: 0; 
+  margin-bottom: 0.75rem; 
   flex-grow: 1;
 }
 

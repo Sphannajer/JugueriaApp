@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { useCart } from "./CartContext";
+import { getProductImageUrl } from "../../features/products/services/productoApi";
 import "../Slide-Cart/Slide-Cart.css";
 
 const SlideCart = () => {
@@ -27,7 +28,7 @@ const SlideCart = () => {
                     <img
                     src={
                         item.urlImagen
-                        ? item.urlImagen
+                        ? getProductImageUrl(item.urlImagen)
                         : "https://placehold.co/100x100/ff9900/ffffff?text=Sin+Imagen"
                     }
                     alt={item.nombre || item.name}

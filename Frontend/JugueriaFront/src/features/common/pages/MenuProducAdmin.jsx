@@ -165,6 +165,43 @@ function MenuProducAdmin() {
         setConfirmModalData(null);
     };
 
+   
+    const EXCEL_REPORT_URL = 'http://localhost:8080/api/productos/reporte/excel'; 
+
+    const handleExportExcel = async () => {
+        showNotification("Generando reporte Excel...", 'info');
+
+        try {
+            const response = await fetch(EXCEL_REPORT_URL, {
+                method: 'GET',
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text(); 
+                throw new Error(`Fallo en la descarga. Estado: ${response.status}. Mensaje: ${errorText.substring(0, 100)}...`);
+            }
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            a.href = url;
+            a.download = 'productos_reporte_' + new Date().toISOString().slice(0, 10) + '.xlsx'; 
+            
+            document.body.appendChild(a);
+            a.click();
+            
+            a.remove();
+            window.URL.revokeObjectURL(url);
+            
+            showNotification("Reporte Excel descargado con éxito.", 'success');
+
+        } catch (error) {
+            console.error("Error al exportar a Excel:", error);
+            showNotification(`Error al generar reporte: ${error.message}`, 'error');
+        }
+    };
+
     return (
         <div className="admin-container">
             <h1>Administración de Productos</h1>
@@ -174,6 +211,14 @@ function MenuProducAdmin() {
                 onClick={handleCreateClick}
             >
                 + Crear Nuevo Producto
+            </button>
+
+            <button 
+                className="btn-excel" 
+                onClick={handleExportExcel}
+                style={{ marginLeft: '10px' }} 
+            >
+                Descargar Reporte Excel
             </button>
 
             <ProductAdminTable 

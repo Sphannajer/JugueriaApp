@@ -20,14 +20,11 @@ export const CartProvider = ({ children }) => {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
-  //Agregar producto al carrito
-  //Agregar producto al carrito
 const addToCart = (item) => {
   setCartItems((prev) => {
     const existing = prev.find((p) => p.id === item.id);
 
     if (existing) {
-      // Si ya existe, solo aumenta cantidad
       if (!toastShown) {
         toast.info(`${item.nombre || item.name} cantidad actualizada`, { autoClose: 1500 });
         toastShown = true;
@@ -39,7 +36,6 @@ const addToCart = (item) => {
       );
     }
 
-    // Si es nuevo, lo agrega
     if (!toastShown) {
       toast.success(`${item.nombre || item.name} agregado al carrito`, { autoClose: 1500 });
       toastShown = true;
@@ -51,22 +47,25 @@ const addToCart = (item) => {
 };
 
 
-  //Eliminar un producto
   const removeFromCart = (id) => {
+    let removedItem = null; 
     setCartItems((prev) => {
-      const removed = prev.find((p) => p.id === id);
-      toast.warn(`${removed?.nombre || removed?.name || "Producto"} eliminado`);
-      return prev.filter((p) => p.id !== id);
+        removedItem = prev.find((p) => p.id === id); 
+        return prev.filter((p) => p.id !== id);     
     });
-  };
+    
+   
+    if (removedItem) {
+        toast.warn(`${removedItem.nombre || removedItem.name || "Producto"} eliminado`);
+      }
+    };
 
-  //Vaciar carrito
   const clearCart = () => {
     setCartItems([]);
     toast.error("Carrito vaciado");
   };
 
-  //Actualizar cantidad
+
   const updateQuantity = (id, delta) => {
     setCartItems((prev) =>
       prev.map((p) =>
@@ -77,7 +76,7 @@ const addToCart = (item) => {
     );
   };
 
-  //Calcular total
+
   const cartTotal = cartItems.reduce(
     (total, item) => total + (item.precio || item.price || 0) * item.quantity,
     0
