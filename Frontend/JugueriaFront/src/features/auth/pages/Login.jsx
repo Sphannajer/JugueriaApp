@@ -81,7 +81,7 @@ const Login = () => {
             <Input type="text" placeholder="Usuario" required onChange={(e) => setNombreUsuario(e.target.value)} />
             <Input type="password" placeholder="Contraseña" required onChange={(e) => setContrasena(e.target.value)} />
             <Button text="Empezar a Pedir" type="submit" />
-            <Link to="/register" className="fm-Formulario-LinkOlvido">
+            <Link to="/forgot-password" className="fm-Formulario-LinkOlvido">
               ¿Olvidaste la contraseña?
             </Link>
           </form>

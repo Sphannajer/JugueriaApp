@@ -8,13 +8,14 @@ import Nosotros from './features/common/pages/Nosotros.jsx';
 import "./styles/App.css";
 import Menu from "./features/products/pages/Menu.jsx";
 import LoginGuard from "./features/guards/loginGuard.jsx";
-import PantallaVerificacionCorreo from "./features/auth/pages/PantallaVerificacionCorreo.jsx";
+import ForgotPassword from "./features/auth/pages/ForgotPassword.jsx";
+import ResetPassword from "./features/auth/pages/ResetPassword.jsx";
 
 import DashboardLayout from './components/Administrador/DashboardLayout.jsx';
 
 import DashboardView from './features/common/pages/Dashboard.jsx'; 
 import VentasAdminView from './features/common/pages/VentasAdmin.jsx';
-import InventarioAdminView from './features/common/pages/InventarioAdmin.jsx';
+import InventarioAdminView from './features/inventario/pages/InventarioAdmin.jsx';
 import MenuProducAdminView from './features/common/pages/MenuProducAdmin.jsx';
 import ClientesAdminView from './features/common/pages/ClientesAdmin.jsx';
 import FinanzasAdminView from './features/common/pages/FinanzasAdmin.jsx';
@@ -31,8 +32,8 @@ function App() {
       <Route path="/visitanos" element={<Visitanos />} />
       <Route path="/contactanos" element={<Contactanos />} />
       <Route path="/nosotros" element={<Nosotros />} />
-      <Route path="/pantalla" element={<PantallaVerificacionCorreo />} />
-
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/admin" element={<DashboardLayout />}>
 
 
