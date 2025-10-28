@@ -1,14 +1,19 @@
-import React from 'react';
+import React from 'react'; 
 import './ProductCard.css';
 import { getProductImageUrl } from '../../features/products/services/productoApi';
-function ProductCard({ product }) {
-    
+import { useCart } from "../Slide-Cart/CartContext";
 
-    const imageUrl = getProductImageUrl(product.urlImagen);
+function ProductCard({ product }) {
+    const { addToCart } = useCart();
+    
+    const imageUrl = getProductImageUrl(product.urlImagen); 
+    
     const handleImageError = (e) => {
         e.target.onerror = null; 
         e.target.src = "https://placehold.co/600x400/ff9900/ffffff?text=No+Imagen";
     };
+
+    if (!product) return null;
 
     return (
         <div className="product-card">
@@ -27,7 +32,9 @@ function ProductCard({ product }) {
                         ? product.precio.toFixed(2) 
                         : '0.00'} 
                 </div>
-                <button className="add-to-cart-button">Agregar</button>
+                <button className="add-to-cart-button" onClick={() => addToCart(product)}>
+                    Agregar
+                </button>
             </div>
         </div>
     );
