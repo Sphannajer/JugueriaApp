@@ -26,15 +26,15 @@
 .product-title {
   font-weight: bold;
   font-size: 1.25rem;
-  margin-top: 0; 
-  margin-bottom: 0.75rem; 
+  margin-top: 0;
+  margin-bottom: 0.75rem;
 }
 
 .product-description {
   font-size: 0.875rem;
   color: #555;
-  margin-top: 0; 
-  margin-bottom: 0.75rem; 
+  margin-top: 0;
+  margin-bottom: 0.75rem;
   flex-grow: 1;
 }
 
@@ -62,7 +62,7 @@
 
 @media (max-width: 768px) {
   .product-card {
-    flex-direction: row; 
+    flex-direction: row;
     text-align: left;
     gap: 15px;
     padding: 10px;

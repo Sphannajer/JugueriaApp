@@ -70,13 +70,10 @@ function Menu() {
     }, [fetchProducts]); 
 
     useEffect(() => {
-        if (selectedCategory === "all" && searchTerm === "") {
-            fetchProducts();
-            return;
-        } 
+        if (loading && products.length === 0 && selectedCategory === "all" && searchTerm === "") return; 
         
         if (searchTerm) {
-            const newFiltered = products.filter((product) =>
+            let newFiltered = products.filter((product) =>
                 product.nombre.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setFilteredProducts(newFiltered);
