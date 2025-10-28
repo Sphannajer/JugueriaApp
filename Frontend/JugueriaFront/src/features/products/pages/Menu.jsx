@@ -91,13 +91,10 @@ function Menu() {
                 subcategoryToFilter = parts[1].trim(); 
             } 
 
-            fetchProducts(categoryToFilter, subcategoryToFilter);
-            
-        } else {
-            fetchProducts(null, null);
+            fetchProducts(categoryToFilter, subcategoryToFilter);           
         }
         
-    }, [selectedCategory, searchTerm, fetchProducts, products, loading]); 
+    }, [selectedCategory, searchTerm, fetchProducts]); 
 
     const handleMobileCategoryToggle = (categoryName) => {
         setOpenMobileCategory(openMobileCategory === categoryName ? null : categoryName);

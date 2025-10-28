@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaOpencart, FaShoppingCart } from "react-icons/fa";
 import { getToken, logOut } from "../../api/authService";
 import logo from "../../assets/LogoOfi.webp";
 import "../Header/Header.css";
+import { useCart } from "../Slide-Cart/CartContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,8 @@ const Navbar = () => {
   useEffect(() => {
     setIsLogged(getToken() ? true : false);
   }, [navigate]);
+
+  const {openCart} = useCart();
 
   // Funcion para cerrar sesion
   const handleLogOut = () => {
@@ -37,8 +40,9 @@ const Navbar = () => {
       <div
         className={`nav_items ${open ? "open" : ""}`}
         role="navigation"
-        aria-hidden={!open}
+        aria-hidden={false}
       >
+
         <NavLink
           to="/"
           onClick={closeMenu}
@@ -71,9 +75,18 @@ const Navbar = () => {
           Visítanos
         </NavLink>
 
+
+        {/* Reemplazo
         <NavLink to="/carrito" className="nav_cart">
           <FaShoppingCart className="cart_icon" />
         </NavLink>
+        */}
+
+
+        <button className="nav_cart" onClick={openCart}>
+          <FaShoppingCart className="cart_icon" />
+        </button>
+
         {isLogged ? (
           // Si está logueado: Muestra el Boton de Cerrar Sesión
           <button onClick={handleLogOut} className="nav_link">

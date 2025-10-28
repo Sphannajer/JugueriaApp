@@ -171,3 +171,33 @@
     background-color: #004080; 
     transform: translateY(1px);
 }
+
+
+.btn-excel {
+ 
+    background-color: #04a346;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    
+
+    margin-top: 18px;
+    margin-bottom: 15px;
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.btn-excel:hover {
+    background-color: #038037e5; 
+}
+
+
+.btn-excel:active {
+    background-color: #038037e5; 
+    transform: translateY(1px);
+}

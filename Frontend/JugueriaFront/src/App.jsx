@@ -4,26 +4,32 @@ import Register from "./features/auth/pages/Register.jsx";
 import Inicio from "./features/products/pages/Home.jsx";
 import Visitanos from "./features/common/pages/Visitanos.jsx";
 import Contactanos from "./features/common/pages/Contactanos.jsx";
-import Nosotros from './features/common/pages/Nosotros.jsx';
+import Nosotros from "./features/common/pages/Nosotros.jsx";
 import "./styles/App.css";
 import Menu from "./features/products/pages/Menu.jsx";
 import LoginGuard from "./features/guards/loginGuard.jsx";
+import PantallaVerificacionCorreo from "./features/auth/pages/PantallaVerificacionCorreo.jsx";
+import SlideCart from "./components/Slide-Cart/Slide-Cart.jsx";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ForgotPassword from "./features/auth/pages/ForgotPassword.jsx";
 import ResetPassword from "./features/auth/pages/ResetPassword.jsx";
 
-import DashboardLayout from './components/Administrador/DashboardLayout.jsx';
+import DashboardLayout from "./components/Administrador/DashboardLayout.jsx";
 
-import DashboardView from './features/common/pages/Dashboard.jsx'; 
-import VentasAdminView from './features/common/pages/VentasAdmin.jsx';
-import InventarioAdminView from './features/inventario/pages/InventarioAdmin.jsx';
-import MenuProducAdminView from './features/common/pages/MenuProducAdmin.jsx';
-import ClientesAdminView from './features/common/pages/ClientesAdmin.jsx';
-import FinanzasAdminView from './features/common/pages/FinanzasAdmin.jsx';
-import PromocionesAdminView from './features/common/pages/PromocionesAdmin.jsx';
+import DashboardView from "./features/common/pages/Dashboard.jsx";
+import VentasAdminView from "./features/common/pages/VentasAdmin.jsx";
+import InventarioAdminView from "./features/common/pages/InventarioAdmin.jsx";
+import MenuProducAdminView from "./features/common/pages/MenuProducAdmin.jsx";
+import ClientesAdminView from "./features/common/pages/ClientesAdmin.jsx";
+import FinanzasAdminView from "./features/common/pages/FinanzasAdmin.jsx";
+import PromocionesAdminView from "./features/common/pages/PromocionesAdmin.jsx";
 
 function App() {
   return (
-    <Routes>
+    <>
+      <Routes>
       <Route path="/login" element={<LoginGuard><Login /></LoginGuard>} />
       <Route path="/register" element={<LoginGuard><Register /></LoginGuard>} />
       <Route path="/" element={<Inicio />} />
@@ -59,9 +65,21 @@ function App() {
 
         {/* Puedes agregar una ruta para Configuración si tienes un componente de vista */}
         <Route path="configuracion" element={<div>Configuración View</div>} />
+        </Route>
+      </Routes>
 
-      </Route>
-    </Routes>
+      <SlideCart />
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
+    </>
   );
 }
 

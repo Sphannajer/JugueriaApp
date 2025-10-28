@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +26,10 @@ public class Usuario {
     private String contrasena;
     private String celular;
     private String direccion;
+    @Column(name = "reset_token")
+    private String resetToken;
+    @Column(name = "token_expiration")
+    private Instant tokenExpiration;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol",
             joinColumns = @JoinColumn(name = "usuario_id"),
@@ -105,6 +110,22 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public Instant getTokenExpiration() {
+        return tokenExpiration;
+    }
+
+    public void setTokenExpiration(Instant tokenExpiration) {
+        this.tokenExpiration = tokenExpiration;
     }
 
     // ✅ Validación interna con Apache Commons

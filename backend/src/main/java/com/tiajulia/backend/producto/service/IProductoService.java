@@ -22,4 +22,6 @@ public interface IProductoService {
     List<Producto> findByNombre(String nombre);
 
     List<Producto> findByCategoriaNombreAndSubcategoria(String nombreCategoria, String subcategoria);
+
+    public byte[] exportToExcel() throws IOException;
 }

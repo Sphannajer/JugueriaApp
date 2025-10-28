@@ -31,9 +31,8 @@ public class JwtProvider {
 
     @Value("${jwt.expiration}")
     private int expiration;
-    private SecretKey key; // NUEVO: La clave secreta en formato Key
+    private SecretKey key;
 
-    // --- 1. Inicializa la Clave Secreta UNA SOLA VEZ ---
     @PostConstruct
     public void init() {
         // Convierte el String secreto a un SecretKey usando HS512
@@ -56,14 +55,14 @@ public class JwtProvider {
 
     public String getNombreUsuarioFromToken(String token) {
         return Jwts.parser()
-                .verifyWith(this.key) // CORREGIDO: Usamos el SecretKey 'key'
+                .verifyWith(this.key)
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
-                .getSubject(); // getSubject() es el método correcto para leer
+                .getSubject();
     }
 
-    // --- 4. Método para validar el token ---
+
     public boolean validateToken(String token) {
         try {
             Jwts.parser().verifyWith(this.key).build().parseClaimsJws(token);
@@ -86,14 +85,15 @@ public class JwtProvider {
         JWT jwt = JWTParser.parse(jwtDto.getToken());
         JWTClaimsSet claims = jwt.getJWTClaimsSet();
         String nombreUsuario = claims.getSubject();
-        List<String> roles = (List<String>)claims.getClaim("roles");
+        List<String> roles = (List<String>) claims.getClaim("roles");
 
         return Jwts.builder()
                 .subject(nombreUsuario)
-                .claim("roles",roles)
+                .claim("roles", roles)
                 .issuedAt(new Date())
                 .expiration(new Date(new Date().getTime() + expiration))
-                .signWith(this.key) // CORREGIDO: Usamos el SecretKey 'key', ya no el String 'secret'
+                .signWith(this.key)
                 .compact();
     }
+
 }

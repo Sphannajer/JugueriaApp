@@ -25,20 +25,21 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class MainSecurity  {
 
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    JwtEntryPoint jwtEntryPoint;
+    private JwtEntryPoint jwtEntryPoint;
 
     @Bean
-    public JwtTokenFilter jwtTokenFilter(){
+    public JwtTokenFilter jwtTokenFilter() {
         return new JwtTokenFilter();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -47,41 +48,35 @@ public class MainSecurity  {
         return authProvider;
     }
 
-
-    // Este Bean se usa para inyectar el AuthenticationManager donde se necesite (ej. en tu controlador de login).
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
-                .cors(cors -> {}) // Equivalente a .cors().and()
+                .cors(cors -> {}) // Habilita CORS (para frontend)
                 .csrf(csrf -> csrf.disable()) // Deshabilita CSRF para APIs REST
-
-                .exceptionHandling(handling ->
-                        handling.authenticationEntryPoint(jwtEntryPoint)) // Manejo de excepciones
-
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Configuración JWT
-
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtEntryPoint))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // Rutas públicas: /auth/**
-                        .requestMatchers("/auth/**").permitAll()
-
-                        .requestMatchers("/api/productos").permitAll()
-                        .requestMatchers("/api/productos/**").permitAll() 
-                        .requestMatchers("/api/productos/uploads/**").permitAll()
-                        .requestMatchers("/api/categorias/**").permitAll()
-                        
+                        // 🔓 Endpoints públicos
+                        .requestMatchers(
+                                "/auth/**",
+                                "/api/productos/**",
+                                "/api/categorias/**",
+                                "/api/inventario/**",
+                                "auth/login",
+                                "auth/nuevo",
+                                "auth/request-reset",
+                                "auth/validate-reset-token",
+                                "auth/reset-password"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 );
 
-        // Agrega tu filtro JWT antes del filtro estándar de Spring
+        // Agrega el filtro JWT
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

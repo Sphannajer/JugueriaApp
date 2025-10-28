@@ -2,9 +2,16 @@ package com.tiajulia.backend.producto.service;
 
 import com.tiajulia.backend.producto.model.Producto;
 import com.tiajulia.backend.producto.repository.ProductoRepository;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -113,4 +120,35 @@ public class ProductoService implements IProductoService {
 public List<Producto> findByCategoriaNombreAndSubcategoria(String nombreCategoria, String subcategoria) {
     return productoRepository.findByCategoriaNombreAndSubcategoria(nombreCategoria, subcategoria);
     }
+
+
+@Override
+public byte[] exportToExcel() throws IOException {
+    List<Producto> productos = productoRepository.findAll();
+
+    try (Workbook workbook = new XSSFWorkbook()) {
+        Sheet sheet = workbook.createSheet("Reporte Productos");
+
+        String[] headers = {"ID", "Nombre", "Descripción", "Precio", "Stock", "Categoría"};
+        Row headerRow = sheet.createRow(0);
+        for (int i = 0; i < headers.length; i++) {
+            headerRow.createCell(i).setCellValue(headers[i]);
+        }
+
+        int rowNum = 1;
+        for (Producto p : productos) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(p.getId());
+            row.createCell(1).setCellValue(p.getNombre());
+            row.createCell(2).setCellValue(p.getDescripcion());
+            row.createCell(3).setCellValue(p.getPrecio());
+            row.createCell(4).setCellValue(p.getStock());
+            row.createCell(5).setCellValue(p.getCategoria().getNombre());
+        }
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        workbook.write(outputStream);
+        return outputStream.toByteArray();
+    }
+}
 }
