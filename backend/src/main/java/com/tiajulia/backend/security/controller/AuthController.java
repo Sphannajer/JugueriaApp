@@ -4,6 +4,7 @@ import com.tiajulia.backend.dto.Mensaje;
 import com.tiajulia.backend.security.dto.JwtDto;
 import com.tiajulia.backend.security.dto.LoginUsuario;
 import com.tiajulia.backend.security.dto.NuevoUsuario;
+import com.tiajulia.backend.security.dto.ResetPasswordRequest;
 import com.tiajulia.backend.security.entity.Rol;
 import com.tiajulia.backend.security.entity.Usuario;
 import com.tiajulia.backend.security.entity.UsuarioPrincipal;
@@ -12,6 +13,7 @@ import com.tiajulia.backend.security.enums.RolUsuario;
 import com.tiajulia.backend.security.jwt.JwtProvider;
 import com.tiajulia.backend.security.repository.VerificacionRepository;
 import com.tiajulia.backend.security.service.EmailService;
+import com.tiajulia.backend.security.service.PasswordResetService;
 import com.tiajulia.backend.security.service.RolService;
 import com.tiajulia.backend.security.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -57,6 +59,9 @@ public class AuthController {
 
     @Autowired
     EmailService emailService;
+
+    @Autowired
+    private PasswordResetService passwordResetService;
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
@@ -105,14 +110,14 @@ public class AuthController {
             return new ResponseEntity<>(new Mensaje("Usuario o contraseña incorrectos"), HttpStatus.UNAUTHORIZED);
         }
 
-        // 2️⃣ Obtener el usuario autenticado
+        //  Obtener el usuario autenticado
         Usuario usuario = usuarioService.getByNombreUsuario(loginUsuario.getNombreUsuario())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
         verificacionRepository.findByEmail(usuario.getEmail())
                 .ifPresent(verificacionRepository::delete);
 
-        // 3️⃣ Generar código de verificación
+        // Generar código de verificación
         String codigo = String.valueOf((int)(Math.random() * 900000) + 100000); // 6 dígitos
 
         VerificacionCodigo verificacion = new VerificacionCodigo(
@@ -122,10 +127,10 @@ public class AuthController {
         );
         verificacionRepository.save(verificacion);
 
-        // 4️⃣ Enviar el correo
+        // Enviar el correo
         emailService.sendVerificationCode(usuario.getEmail(), codigo);
 
-        // 5️⃣ Devolver email real al frontend
+        // Devolver email real al frontend
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", "Código enviado al correo registrado.");
         response.put("email", usuario.getEmail());
@@ -139,7 +144,7 @@ public class AuthController {
         String email = request.get("email");
         String codigo = request.get("codigo");
 
-        // 1️⃣ Buscar el código por correo
+        // Buscar el código por correo
         Optional<VerificacionCodigo> optionalCodigo = verificacionRepository.findByEmail(email);
 
         if (optionalCodigo.isEmpty())
@@ -147,35 +152,35 @@ public class AuthController {
 
         VerificacionCodigo verificacion = optionalCodigo.get();
 
-        // 2️⃣ Validar si ha expirado
+        // Validar si ha expirado
         if (verificacion.getExpirationTime().isBefore(LocalDateTime.now()))
             return new ResponseEntity<>(new Mensaje("El código ha expirado"), HttpStatus.BAD_REQUEST);
 
-        // 3️⃣ Validar el código
+        // Validar el código
         if (!verificacion.getCode().equals(codigo))
             return new ResponseEntity<>(new Mensaje("Código incorrecto"), HttpStatus.BAD_REQUEST);
 
-        // 4️⃣ Buscar el usuario por email
+        // Buscar el usuario por email
         Usuario usuario = usuarioService.getByEmail(verificacion.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-        // ✅ 5️⃣ Crear un UsuarioPrincipal (implementa UserDetails)
+        // Crear un UsuarioPrincipal (implementa UserDetails)
         UsuarioPrincipal usuarioPrincipal = UsuarioPrincipal.build(usuario);
 
-        // ✅ 6️⃣ Crear un objeto de autenticación correcto
+        //Crear un objeto de autenticación correcto
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 usuarioPrincipal,
                 null,
                 usuarioPrincipal.getAuthorities()
         );
 
-        // ✅ 7️⃣ Generar el JWT
+        // Generar el JWT
         String jwt = jwtProvider.generateToken(authentication);
 
-        // 8️⃣ Eliminar el código (opcional)
+        // Eliminar el código (opcional)
         verificacionRepository.delete(verificacion);
 
-        // 9️⃣ Devolver el token
+        // Devolver el token
         return new ResponseEntity<>(new JwtDto(jwt), HttpStatus.OK);
     }
 
@@ -187,4 +192,35 @@ public class AuthController {
         JwtDto jwt = new JwtDto(token);
         return new ResponseEntity(jwt, HttpStatus.OK);
     }
+
+    @PostMapping("/request-reset")
+    public ResponseEntity<?> solicitarRestablecimiento(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        try {
+            passwordResetService.solicitarRestablecimiento(email);
+            return ResponseEntity.ok(Map.of("mensaje", "Se ha enviado un enlace de restablecimiento al correo."));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @GetMapping("/validate-reset-token")
+    public ResponseEntity<?> validarToken(@RequestParam String token) {
+        boolean valido = passwordResetService.validarToken(token);
+        return ResponseEntity.ok(Map.of("valido", valido));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> cambiarContrasena(@RequestBody ResetPasswordRequest request) {
+        try {
+            passwordResetService.cambiarContrasena(request.getToken(), request.getContrasena());
+            return ResponseEntity.ok(Map.of("mensaje", "Contraseña actualizada correctamente."));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", e.getMessage()));
+        }
+    }
+
+
 }

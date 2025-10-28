@@ -7,6 +7,7 @@ import com.tiajulia.backend.producto.model.Producto;
 import com.tiajulia.backend.producto.service.IProductoService;
 import com.tiajulia.backend.producto.service.IUploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -153,6 +154,29 @@ public ResponseEntity<List<ProductoResponseDTO>> findByFilter(
             return ResponseEntity.notFound().build();
         } catch (RuntimeException e) {
             return ResponseEntity.internalServerError().build();
+        }
+    }
+
+
+    @GetMapping("/reporte/excel")
+    public ResponseEntity<Resource> exportToExcel() {
+        try {
+            byte[] excelBytes = productoService.exportToExcel();
+            
+            ByteArrayResource resource = new ByteArrayResource(excelBytes);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"productos_reporte.xlsx\"");
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentLength(excelBytes.length)
+                    .body(resource);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

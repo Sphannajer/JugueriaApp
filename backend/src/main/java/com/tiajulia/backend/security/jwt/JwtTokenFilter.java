@@ -26,25 +26,34 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     UserDetailsServiceImpl userDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         try {
-            String token = getToken(req);
-            if(token !=null && jwtProvider.validateToken(token)){
+            String token = getToken(request);
+            if (token != null && jwtProvider.validateToken(token)) {
                 String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(auth);
+
+                if (userDetails != null) {
+                    UsernamePasswordAuthenticationToken auth =
+                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                } else {
+                    logger.warn("UserDetails es null para: {}", nombreUsuario);
+                }
             }
         } catch (Exception e) {
-            logger.error("fail en el metodo doFilter");
+            logger.error("Error en autenticación JWT: {}", e.getMessage(), e);
         }
-        filterChain.doFilter(req, res);
+        filterChain.doFilter(request, response);
     }
+
 
     private String getToken(HttpServletRequest request){
         String header = request.getHeader("Authorization");
-        if(header != null && header.startsWith("Bearer"))
-            return header.replace("Bearer","");
+        if(header != null && header.startsWith("Bearer ")) {
+            return header.substring(7).trim();
+        }
         return null;
     }
 }
