@@ -3,7 +3,7 @@ import axios from "axios";
 import { Input } from "../../../components/Login/Input";
 import { Button } from "../../../components/Login/Button";
 import { useNavigate } from "react-router-dom";
-import "../../../styles/Login.css";
+import "../../../styles/VerificacionContraseña.css";
 
 export default function ResetPassword() {
   const [contrasena, setContrasena] = useState("");
@@ -39,28 +39,28 @@ export default function ResetPassword() {
 
   return (
     <div className="body">
-      <div className="fm-ContenedorDelTodoLogin">
-        <div className="fm-Formulario">
-          <h1 className="fm-Formulario-h1">Restablecer Contraseña</h1>
-          <form className="fm-Formulario-inputs" onSubmit={handleSubmit}>
-            <Input
-              type="password"
-              placeholder="Nueva contraseña"
-              required
-              onChange={(e) => setContrasena(e.target.value)}
-            />
-            <Input
-              type="password"
-              placeholder="Confirmar contraseña"
-              required
-              onChange={(e) => setConfirmar(e.target.value)}
-            />
-            <Button text="Cambiar contraseña" type="submit" />
-          </form>
-          {mensaje && <p style={{ color: "green" }}>{mensaje}</p>}
-          {error && <p className="error-message">{error}</p>}
-        </div>
+    <div className="rcs-container">
+      <div className="rcs-form">
+        <h1>Restablecer Contraseña</h1>
+        <form className="rcs-form-inputs" onSubmit={handleSubmit}>
+          <Input
+            type="password"
+            placeholder="Nueva contraseña"
+            required
+            onChange={(e) => setContrasena(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Confirmar contraseña"
+            required
+            onChange={(e) => setConfirmar(e.target.value)}
+          />
+          <Button text="Cambiar contraseña" type="submit" />
+        </form>
+        {mensaje && <p className="rcs-success-message">{mensaje}</p>}
+        {error && <p className="rcs-error-message">{error}</p>}
       </div>
     </div>
+  </div>
   );
 }

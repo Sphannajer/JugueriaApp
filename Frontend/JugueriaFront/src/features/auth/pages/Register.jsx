@@ -60,79 +60,79 @@ const Register = () => {
     };
 
     return (
-        <div className='body'>
-            <div className="fm-ContenedorDelTodo">
-                <img src="../../../../images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
-                <div className="fm-FormularioRegistro">
-                    <h1 className="fm-FormularioRegistro-h1">REGISTRO</h1>
+        <body>
+                <div className="fm-ContenedorDelTodo">
+                    <img src="../../../../images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
+                    <div className="fm-FormularioRegistro">
+                        <h1 className="fm-FormularioRegistro-h1">REGISTRO</h1>
 
 
-                    <form className="fm-FormularioRegistro-Inputs" onSubmit={handleSubmit}>
+                        <form className="fm-FormularioRegistro-Inputs" onSubmit={handleSubmit}>
 
-                        {/* Campo Nombre Real del Usuario (user) */}
-                        <Input
-                            type="text"
-                            name="nombre"
-                            placeholder="Nombre"
-                            required
-                            onChange={(e) => setNombre(e.target.value)}
-                        />
+                            {/* Campo Nombre Real del Usuario (user) */}
+                            <Input
+                                type="text"
+                                name="nombre"
+                                placeholder="Nombre"
+                                required
+                                onChange={(e) => setNombre(e.target.value)}
+                            />
 
-                        {/* Campo Nombre de Usuario (user) */}
-                        <Input
-                            type="text"
-                            name="user"
-                            placeholder="Usuario"
-                            required
-                            onChange={(e) => setNombreUsuario(e.target.value)}
-                        />
+                            {/* Campo Nombre de Usuario (user) */}
+                            <Input
+                                type="text"
+                                name="user"
+                                placeholder="Usuario"
+                                required
+                                onChange={(e) => setNombreUsuario(e.target.value)}
+                            />
 
-                        {/* Campo Email (correo) */}
-                        <Input
-                            type="email"
-                            name="correo"
-                            placeholder="Correo"
-                            required
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+                            {/* Campo Email (correo) */}
+                            <Input
+                                type="email"
+                                name="correo"
+                                placeholder="Correo"
+                                required
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
 
-                        {/* Campo Contraseña (contrasenia) */}
-                        <Input
-                            type="password"
-                            name="contrasena"
-                            placeholder="Contraseña"
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                            {/* Campo Contraseña (contrasenia) */}
+                            <Input
+                                type="password"
+                                name="contrasena"
+                                placeholder="Contraseña"
+                                required
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
 
-                        {/* Campo Teléfono (telefono) */}
-                        <Input
-                            type="number"
-                            name="celular"
-                            placeholder="Celular"
-                            required
-                            onChange={(e) => setTelefono(e.target.value)}
-                        />
+                            {/* Campo Teléfono (telefono) */}
+                            <Input
+                                type="number"
+                                name="celular"
+                                placeholder="Celular"
+                                required
+                                onChange={(e) => setTelefono(e.target.value)}
+                            />
 
-                        {/* Campo Dirección (direccion) */}
-                        <Input
-                            type="text"
-                            name="direccion"
-                            placeholder="Direccion"
-                            required
-                            onChange={(e) => setDireccion(e.target.value)}
-                        />
+                            {/* Campo Dirección (direccion) */}
+                            <Input
+                                type="text"
+                                name="direccion"
+                                placeholder="Direccion"
+                                required
+                                onChange={(e) => setDireccion(e.target.value)}
+                            />
 
-                        <Button text="Registrar" type="submit" />
-                    </form>
-                    <Link to="/login" className="fm-Formulario-LinkLogin">
-                        ¿Ya tienes cuenta? Inicia Sesión
-                    </Link>
-                    {/* Visualización del error de registro */}
-                    {errMsj && <p className="error-message">{errMsj}</p>}
+                            <Button text="Registrar" type="submit" />
+                        </form>
+                        <Link to="/login" className="fm-Formulario-LinkLogin">
+                            ¿Ya tienes cuenta? Inicia Sesión
+                        </Link>
+                        {/* Visualización del error de registro */}
+                        {errMsj && <p className="error-message">{errMsj}</p>}
+                    </div>
                 </div>
-            </div>
-        </div>
+        </body>
     );
 };
 
