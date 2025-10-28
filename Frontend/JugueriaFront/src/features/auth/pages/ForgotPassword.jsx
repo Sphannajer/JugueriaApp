@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Input } from "../../../components/Login/Input";
 import { Button } from "../../../components/Login/Button";
-import "../../../styles/Login.css";
+import "../../../styles/Recuperacion.css";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -24,10 +24,10 @@ export default function ForgotPassword() {
 
   return (
     <div className="body">
-      <div className="fm-ContenedorDelTodoLogin">
-        <div className="fm-Formulario">
-          <h1 className="fm-Formulario-h1">Recuperar contraseña</h1>
-          <form className="fm-Formulario-inputs" onSubmit={handleSubmit}>
+      <div className="rc-container">
+        <div className="rc-form">
+          <h1>Recuperar contraseña</h1>
+          <form className="rc-form-inputs" onSubmit={handleSubmit}>
             <Input
               type="email"
               placeholder="Ingresa tu correo"
@@ -36,8 +36,8 @@ export default function ForgotPassword() {
             />
             <Button text="Enviar enlace de recuperación" type="submit" />
           </form>
-          {mensaje && <p style={{ color: "green" }}>{mensaje}</p>}
-          {error && <p className="error-message">{error}</p>}
+          {mensaje && <p className="rc-success-message">{mensaje}</p>}
+          {error && <p className="rc-error-message">{error}</p>}
         </div>
       </div>
     </div>
