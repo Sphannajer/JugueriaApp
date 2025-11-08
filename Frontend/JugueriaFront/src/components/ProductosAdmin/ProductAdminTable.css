@@ -1,0 +1,203 @@
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+}
+
+.admin-product-table {
+    width: 100%;
+    border-collapse: collapse; 
+    font-size: 0.9em;
+    min-width: 800px; 
+    background-color: #fff;
+    table-layout: fixed; 
+}
+
+.admin-product-table thead tr {
+    background-color: #007bff; 
+    color: white;
+    text-align: left;
+}
+
+.admin-product-table th {
+    padding: 12px 15px;
+    font-weight: 600;
+    border-right: 1px solid #0056b3; 
+}
+
+.admin-product-table th:last-child {
+    border-right: none;
+}
+
+
+.admin-product-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+}
+
+.admin-product-table tbody tr:hover {
+    background-color: #f1f8ff;
+}
+
+.admin-product-table tbody tr:nth-of-type(even) {
+    background-color: #f7f7f7;
+}
+
+.admin-product-table td {
+    padding: 10px 15px;
+    vertical-align: middle;
+    border-right: 1px solid #eee;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-product-table td:last-child {
+    border-right: none;
+}
+
+.admin-product-table th:nth-child(1),
+.admin-product-table td:nth-child(1) {
+    width: 50px;
+    text-align: center;
+}
+
+.admin-product-table th:nth-child(2),
+.admin-product-table td:nth-child(2) { 
+    width: 80px;
+    text-align: center;
+}
+
+.admin-product-table th:nth-child(5),
+.admin-product-table td:nth-child(5) { 
+    width: 90px;
+    text-align: right;
+}
+
+.admin-product-table th:nth-child(6),
+.admin-product-table td:nth-child(6) { 
+    width: 70px;
+    text-align: center;
+}
+
+.admin-product-table th:nth-child(7),
+.admin-product-table td:nth-child(7) { 
+    width: 130px; 
+    text-align: left;
+}
+
+.admin-product-table th:nth-child(8),
+.admin-product-table td:nth-child(8) { 
+    width: 180px; 
+    min-width: 180px; 
+    text-align: center;
+}
+
+
+.admin-product-table img {
+    border-radius: 4px; 
+    border: 1px solid #ccc;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+.admin-product-table .actions {
+    display: flex;
+    gap: 5px; 
+    justify-content: center;
+}
+
+.admin-product-table .actions button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; 
+}
+
+
+.btn-edit {
+    background-color: #28a745; 
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #1e7e34;
+}
+
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.btn-create {
+ 
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    
+
+    margin-top: 18px;
+    margin-bottom: 15px;
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.btn-create:hover {
+    background-color: #0056b3; 
+}
+
+
+.btn-create:active {
+    background-color: #004080; 
+    transform: translateY(1px);
+}
+
+
+.btn-excel {
+ 
+    background-color: #04a346;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    
+
+    margin-top: 18px;
+    margin-bottom: 15px;
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.btn-excel:hover {
+    background-color: #038037e5; 
+}
+
+
+.btn-excel:active {
+    background-color: #038037e5; 
+    transform: translateY(1px);
+}

@@ -1,0 +1,120 @@
+.chk-main {
+  min-height: calc(100dvh - 80px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(1200px 600px at 80% -10%, #f0f4ff, #fff);
+}
+
+.chk-card {
+  width: min(720px, 92vw);
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(2, 6, 23, 0.08);
+  border: 1px solid rgba(2, 6, 23, 0.06);
+}
+
+.chk-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  background: #e5e7eb;
+  position: relative;
+}
+.chk-success .chk-icon {
+  background: #dcfce7;
+}
+
+.chk-pending .chk-icon {
+  background: #fee2e2;
+}
+
+.chk-failure .chk-icon {
+  background: #fee2e2;
+}
+
+.chk-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="black"><path d="M9 12l2 2 4-4" stroke="black" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+    center/34px 34px no-repeat;
+  background: #16a34a;
+}
+
+.chk-failure .chk-icon::after {
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="black"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>')
+    center/34px 34px no-repeat;
+  background: #ef4444;
+}
+
+.chk-pending .chk-icon::after {
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="black"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>')
+    center/34px 34px no-repeat;
+  background: #f59e0b;
+}
+
+.chk-card h1 {
+  font-size: 26px;
+  margin: 4px 0 6px;
+}
+
+.chk-lead {
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+.chk-small {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.chk-summary {
+  margin-top: 14px;
+}
+
+.chk-summary h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.chk-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.chk-summary li {
+  display: flex;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.chk-actions {
+  margin-top: 18px;
+}
+
+.chk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #111827;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.08s ease-out, box-shadow 0.12s ease-out;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.15);
+}
+
+.chk-btn:hover {
+  transform: translateY(-1px);
+}
