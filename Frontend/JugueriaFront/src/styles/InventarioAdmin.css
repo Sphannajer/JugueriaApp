@@ -1,0 +1,155 @@
+.inventario-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #fff;
+}
+
+.inventario-izquierda {
+  flex: 2;
+}
+
+.inventario-derecha {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titulo {
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.btn-agregar {
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.btn-agregar:hover {
+  background-color: #ff7000;
+}
+
+.tabla-inventario {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.tabla-inventario th {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+}
+.tabla-inventario td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.btn-editar {
+  background-color: #ffa733;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.btn-eliminar {
+  background-color: #ff6600;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+.btn-editar:hover,
+.btn-eliminar:hover {
+  opacity: 0.9;
+}
+
+.card-grafico {
+  width: 150%;
+  margin-left: -60%; /* opcional para centrar */
+}
+
+.card-valor{
+
+  margin-left: -60%; /* opcional para centrar */
+}
+
+
+.card-grafico,
+.card-valor {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.card-valor h2 {
+  color: #5a3d00;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 400px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-cancelar {
+  background-color: #999;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-guardar {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-cancelar:hover,
+.btn-guardar:hover {
+  opacity: 0.9;
+}
