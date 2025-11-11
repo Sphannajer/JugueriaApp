@@ -20,7 +20,7 @@ import DashboardLayout from "./components/Administrador/DashboardLayout.jsx";
 
 import DashboardView from "./features/common/pages/Dashboard.jsx";
 import VentasAdminView from "./features/common/pages/VentasAdmin.jsx";
-import InventarioAdminView from "./features/common/pages/InventarioAdmin.jsx";
+import InventarioAdminView from "./features/inventario/pages/InventarioAdmin.jsx";
 import MenuProducAdminView from "./features/common/pages/MenuProducAdmin.jsx";
 import ClientesAdminView from "./features/common/pages/ClientesAdmin.jsx";
 import FinanzasAdminView from "./features/common/pages/FinanzasAdmin.jsx";
