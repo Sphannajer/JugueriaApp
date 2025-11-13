@@ -60,7 +60,7 @@ const Register = () => {
     };
 
     return (
-        <body>
+        <div className='body'>
                 <div className="fm-ContenedorDelTodo">
                     <img src="../../../../images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
                     <div className="fm-FormularioRegistro">
@@ -132,7 +132,7 @@ const Register = () => {
                         {errMsj && <p className="error-message">{errMsj}</p>}
                     </div>
                 </div>
-        </body>
+        </div>
     );
 };
 
