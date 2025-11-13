@@ -65,7 +65,7 @@ const Login = () => {
   };
 
   return (
-    <body>
+    <div className='body'>
         <div className="fm-ContenedorDelTodoLogin">
           <img src="../../../../images/logo.png" alt="logoJugueria" className="fm-LogoJugueria" />
           <div className="fm-Formulario">
@@ -123,7 +123,7 @@ const Login = () => {
             </div>
           </div>
         )}
-    </body>
+    </div>
   );
 };
 
