@@ -1,5 +1,7 @@
 package com.tiajulia.backend.util;
 
+import com.tiajulia.backend.security.entity.Rol;
+import com.tiajulia.backend.security.enums.RolUsuario;
 import com.tiajulia.backend.security.service.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

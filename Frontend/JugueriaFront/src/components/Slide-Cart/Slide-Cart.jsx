@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useCart } from "./CartContext";
 import { getProductImageUrl } from "../../features/products/services/productoApi";
 import "../Slide-Cart/Slide-Cart.css";
-import { pagar } from "../../features/products/services/productoApi";
 
 const SlideCart = () => {
   const {
@@ -11,10 +10,65 @@ const SlideCart = () => {
     cartItems,
     closeCart,
     removeFromCart,
-    clearCart,
     cartTotal,
     updateQuantity,
   } = useCart();
+
+  // Estado para deshabilitar el botón mientras carga
+  const [loading, setLoading] = useState(false);
+
+  // Función para procesar el pago
+  const handlePayment = async () => {
+    setLoading(true);
+    try {
+      // 1. Limpiamos los datos para enviar SOLO lo que el backend necesita (id y cantidad)
+      const itemsLimpios = cartItems.map((item) => ({
+        id: Number(item.id),
+        quantity: Number(item.quantity),
+      }));
+
+      console.log("Enviando items al backend:", itemsLimpios);
+
+      const response = await fetch(
+        "http://localhost:8080/api/checkout/preference",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Enviamos la lista limpia
+          body: JSON.stringify({ items: itemsLimpios }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Si existe el link de pago, redirigimos
+        if (data.init_point) {
+          window.location.href = data.init_point;
+        } else {
+          console.error("La respuesta no tiene init_point", data);
+          alert("Error: No se recibió el link de pago.");
+        }
+      } else {
+        // Intentamos leer el error del backend si es posible
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Error del servidor:", response.status, errorData);
+        alert(
+          `Hubo un error al procesar el pago: ${
+            errorData.message || "Intente nuevamente"
+          }`
+        );
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
+      alert("No se pudo conectar con el Backend.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   console.log("SlideCart render:", { isCartOpen, cartItems });
 
   if (!isCartOpen) return null;
@@ -87,10 +141,19 @@ const SlideCart = () => {
             Total: <strong>S/{cartTotal.toFixed(2)}</strong>
           </div>
           <div className="cart-buttons">
-            <button className="pay-btn" onClick={() => pagar(cartItems)}>
-              Procesar Pago
+            {/* AQUÍ ESTABA EL ERROR: Se cambió handlePay por handlePayment */}
+            <button
+              className="pay-btn"
+              onClick={handlePayment}
+              disabled={loading || cartItems.length === 0}
+            >
+              {loading ? "Redirigiendo…" : "Procesar Pago"}
             </button>
-            <button className="continue-btn" onClick={closeCart}>
+            <button
+              className="continue-btn"
+              onClick={closeCart}
+              disabled={loading}
+            >
               Continuar comprando
             </button>
           </div>

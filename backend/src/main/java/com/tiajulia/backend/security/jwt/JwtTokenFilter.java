@@ -1,5 +1,6 @@
 package com.tiajulia.backend.security.jwt;
 
+import com.tiajulia.backend.security.entity.Usuario;
 import com.tiajulia.backend.security.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

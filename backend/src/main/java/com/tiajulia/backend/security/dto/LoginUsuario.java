@@ -1,5 +1,6 @@
 package com.tiajulia.backend.security.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class LoginUsuario {

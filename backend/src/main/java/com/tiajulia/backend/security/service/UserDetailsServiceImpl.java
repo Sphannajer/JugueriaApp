@@ -1,5 +1,6 @@
 package com.tiajulia.backend.security.service;
 
+import com.tiajulia.backend.security.entity.Usuario;
 import com.tiajulia.backend.security.entity.UsuarioPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
