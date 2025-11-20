@@ -1,9 +1,9 @@
 // src/pages/CheckoutResult.jsx
 import React, { useEffect, useMemo } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { getDraft, clearDraft } from "../products/services/productoApi";
-import { useToast } from "../ui/toast";
-import { useCart } from "../components/Slide-Cart/CartContext";
+import { getDraft, clearDraft } from "../../products/services/productoApi";
+import { useToast } from "../../../ui/toast";
+import { useCart } from "../../../components/Slide-Cart/CartContext";
 import "../../../styles/checkout-result.css";
 
 export default function CheckoutResult({ forcedStatus }) {

@@ -11,6 +11,8 @@ import LoginGuard from "./features/guards/loginGuard.jsx";
 import PantallaVerificacionCorreo from "./features/auth/pages/PantallaVerificacionCorreo.jsx";
 import SlideCart from "./components/Slide-Cart/Slide-Cart.jsx";
 
+import CheckoutResult from "./features/common/pages/CheckoutResult.jsx";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPassword from "./features/auth/pages/ForgotPassword.jsx";
@@ -46,6 +48,20 @@ function App() {
             </LoginGuard>
           }
         />
+
+        <Route
+          path="/success"
+          element={<CheckoutResult forcedStatus="success" />}
+        />
+        <Route
+          path="/failure"
+          element={<CheckoutResult forcedStatus="failure" />}
+        />
+        <Route
+          path="/pending"
+          element={<CheckoutResult forcedStatus="pending" />}
+        />
+
         <Route path="/" element={<Inicio />} />
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/menu" element={<Menu />} />
