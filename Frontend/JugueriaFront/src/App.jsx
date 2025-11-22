@@ -26,6 +26,7 @@ import ClientesAdminView from "./features/common/pages/ClientesAdmin.jsx";
 import FinanzasAdminView from "./features/common/pages/FinanzasAdmin.jsx";
 import PromocionesAdminView from "./features/common/pages/PromocionesAdmin.jsx";
 
+import ConfirmarCompra from "./features/products/pages/ConfirmarCompra.jsx";
 function App() {
   return (
     <>
@@ -40,8 +41,11 @@ function App() {
       <Route path="/nosotros" element={<Nosotros />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+
+      <Route path="/confirmar-compra" element={<ConfirmarCompra />} /> 
       <Route path="/admin" element={<DashboardLayout />}>
 
+      
 
         <Route index element={<DashboardView />} />
 

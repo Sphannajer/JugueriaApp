@@ -44,44 +44,43 @@ public class ProductoController {
 
     @GetMapping
     public ResponseEntity<List<ProductoResponseDTO>> findAll() {
-        List<ProductoResponseDTO> dtoList = productoService.findAll().stream()
-                .map(ProductoResponseDTO::new)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(dtoList);
+        // Llama al servicio que ya calcula el stock
+        List<ProductoResponseDTO> productos = productoService.findAll();
+        return ResponseEntity.ok(productos);
     }
 
+    
     @GetMapping("/filtrar")
     public ResponseEntity<List<ProductoResponseDTO>> findByFilter(
             @RequestParam(required = false) String categoria,
             @RequestParam(required = false) String subcategoria) {
 
-        List<Producto> productos = List.of();
+        if (categoria == null && subcategoria == null) {
+            return findAll();
+        }
 
+        List<ProductoResponseDTO> productos = List.of();
+
+        // Aquí se corrigió el error: ahora llamamos a los métodos del servicio 
+        // que devuelven DTOs con la disponibilidad ya calculada.
         if (categoria != null && !categoria.isEmpty() && subcategoria != null && !subcategoria.isEmpty()) {
             productos = productoService.findByCategoriaNombreAndSubcategoria(categoria, subcategoria);
-
-        }
-        else if (categoria != null && !categoria.isEmpty()) {
+        } else if (categoria != null && !categoria.isEmpty()) {
             productos = productoService.findByCategoriaNombre(categoria);
-        }
-        else if (subcategoria != null && !subcategoria.isEmpty()) {
+        } else if (subcategoria != null && !subcategoria.isEmpty()) {
             productos = productoService.findBySubcategoria(subcategoria);
-
         }
-        else {
-            productos = productoService.findAll();
-        }
-        List<ProductoResponseDTO> dtoList = productos.stream()
-                .map(ProductoResponseDTO::new)
-                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(dtoList);
+        return ResponseEntity.ok(productos);
     }
+    
     @GetMapping("/{id}")
     public ResponseEntity<ProductoResponseDTO> findById(@PathVariable Integer id) {
-        return productoService.findById(id)
-                .map(producto -> ResponseEntity.ok(new ProductoResponseDTO(producto)))
-                .orElse(ResponseEntity.notFound().build());
+         Optional<Producto> optionalProducto = productoService.findById(id);
+         if (optionalProducto.isEmpty()) return ResponseEntity.notFound().build();
+         
+         // Usamos el constructor simple del DTO (asume disponible=true para detalles individuales)
+         return ResponseEntity.ok(new ProductoResponseDTO(optionalProducto.get()));
     }
 
     @PostMapping(consumes = {"multipart/form-data"})

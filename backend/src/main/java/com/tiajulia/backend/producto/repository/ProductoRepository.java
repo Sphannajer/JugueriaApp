@@ -1,6 +1,7 @@
 package com.tiajulia.backend.producto.repository;
 
 import com.tiajulia.backend.producto.model.Producto;
+import com.tiajulia.backend.producto.model.RecetaProducto;
 
 import java.util.List;
 

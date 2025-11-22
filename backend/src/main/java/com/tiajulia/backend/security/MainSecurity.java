@@ -67,11 +67,13 @@ public class MainSecurity  {
                                 "/api/productos/**",
                                 "/api/categorias/**",
                                 "/api/inventario/**",
-                                "auth/login",
-                                "auth/nuevo",
-                                "auth/request-reset",
-                                "auth/validate-reset-token",
-                                "auth/reset-password"
+                                "/api/v1/ordenes/**",
+                                "/api/v1/ordenes/checkout",
+                                "/auth/login",
+                                "/auth/nuevo",
+                                "/auth/request-reset",
+                                "/auth/validate-reset-token",
+                                "/auth/reset-password"
                         ).permitAll()
                         .anyRequest().authenticated()
                 );
