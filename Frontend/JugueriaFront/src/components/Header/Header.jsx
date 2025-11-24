@@ -1,48 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FaOpencart, FaShoppingCart } from "react-icons/fa";
-import { getToken, logOut } from "../../api/authService";
-import logo from "../../assets/LogoOfi.webp";
-import "../Header/Header.css";
+import { FaShoppingCart } from "react-icons/fa";
+import { User, LogOut } from "lucide-react";
+import { getToken, logOut, getUserName } from "../../api/authService";
 import { useCart } from "../Slide-Cart/CartContext";
+import logo from "../../assets/LogoOfi.webp";
+import "./Header.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+  const { openCart } = useCart();
+
   const toggle = () => setOpen((v) => !v);
   const closeMenu = () => setOpen(false);
 
   useEffect(() => {
-    setIsLogged(getToken() ? true : false);
+    setIsLogged(!!getToken());
   }, [navigate]);
 
-  const {openCart} = useCart();
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-  // Funcion para cerrar sesion
   const handleLogOut = () => {
     logOut();
-    setIsLogged(false); // Actualiza el estado local
-    closeMenu(); // Cierra el menú móvil
-    navigate("/inicio"); // Lo que va hacer este apartado es rdiriguir
+    setIsLogged(false);
+    setShowDropdown(false);
+    closeMenu();
+    navigate("/inicio");
   };
 
   return (
     <nav className="navbar">
-      {/* Logo */}
-      <div className="nav_logo">
+      {/* LOGO */}
+      <div className="nav_logo" onClick={() => navigate("/")}>
         <img src={logo} alt="Logo Tía Julia" className="logo_img" />
         <span>Tía Julia</span>
       </div>
 
-      {/* Items */}
-      <div
-        className={`nav_items ${open ? "open" : ""}`}
-        role="navigation"
-        aria-hidden={false}
-      >
-
+      {/* MENU ITEMS */}
+      <div className={`nav_items ${open ? "open" : ""}`}>
         <NavLink
           to="/"
           onClick={closeMenu}
@@ -50,7 +59,6 @@ const Navbar = () => {
         >
           Inicio
         </NavLink>
-
         <NavLink
           to="/menu"
           onClick={closeMenu}
@@ -58,7 +66,6 @@ const Navbar = () => {
         >
           Menú
         </NavLink>
-
         <NavLink
           to="/nosotros"
           onClick={closeMenu}
@@ -66,7 +73,6 @@ const Navbar = () => {
         >
           Nosotros
         </NavLink>
-
         <NavLink
           to="/visitanos"
           onClick={closeMenu}
@@ -75,42 +81,60 @@ const Navbar = () => {
           Visítanos
         </NavLink>
 
-
-        {/* Reemplazo
-        <NavLink to="/carrito" className="nav_cart">
-          <FaShoppingCart className="cart_icon" />
-        </NavLink>
-        */}
-
-
-        <button className="nav_cart" onClick={openCart}>
-          <FaShoppingCart className="cart_icon" />
+        {/* CARRITO */}
+        <button className="nav_cart_btn" onClick={openCart}>
+          <FaShoppingCart />
         </button>
 
-        {isLogged ? (
-          // Si está logueado: Muestra el Boton de Cerrar Sesión
-          <button onClick={handleLogOut} className="nav_link">
-            Cerrar Sesión
-          </button>
-        ) : (
-          // Si NO está logueado: Muestra lo que es el inicio de la pagina
-          <NavLink to="/login" onClick={closeMenu} className="nav_link">
-            Iniciar Sesión
-          </NavLink>
-        )}
+        {/* ZONA DE USUARIO */}
+        <div className="user-section" ref={dropdownRef}>
+          {isLogged ? (
+            // CORRECCIÓN AQUÍ: Usamos 'header-user-wrapper' para evitar conflictos
+            <div
+              className="header-user-wrapper"
+              onMouseEnter={() => setShowDropdown(true)}
+              onMouseLeave={() => setShowDropdown(false)}
+            >
+              <button
+                className="profile-icon-btn"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                <User size={24} />
+              </button>
+
+              {showDropdown && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-arrow"></div>
+                  <div className="dropdown-welcome">Hola, {getUserName()}</div>
+
+                  <button
+                    onClick={() => {
+                      navigate("/perfil");
+                      setShowDropdown(false);
+                      closeMenu();
+                    }}
+                  >
+                    <User size={16} /> Mi Perfil
+                  </button>
+
+                  <div className="dropdown-divider"></div>
+
+                  <button className="logout-text" onClick={handleLogOut}>
+                    <LogOut size={16} /> Cerrar Sesión
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <NavLink to="/login" onClick={closeMenu} className="login-btn">
+              Iniciar Sesión
+            </NavLink>
+          )}
+        </div>
       </div>
 
-      {/* Toggle (hamburguesa) */}
-      <button
-        className={`nav_toggle ${open ? "open" : ""}`}
-        onClick={toggle}
-        aria-label={open ? "Cerrar menú" : "Abrir menú"}
-      >
-        {open ? (
-          <FiX className="toggle_icon" />
-        ) : (
-          <FiMenu className="toggle_icon" />
-        )}
+      <button className="nav_toggle" onClick={toggle}>
+        {open ? <FiX /> : <FiMenu />}
       </button>
     </nav>
   );

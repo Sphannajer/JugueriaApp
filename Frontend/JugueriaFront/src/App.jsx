@@ -10,6 +10,7 @@ import Menu from "./features/products/pages/Menu.jsx";
 import LoginGuard from "./features/guards/loginGuard.jsx";
 import PantallaVerificacionCorreo from "./features/auth/pages/PantallaVerificacionCorreo.jsx";
 import SlideCart from "./components/Slide-Cart/Slide-Cart.jsx";
+import Perfil from "./features/common/pages/UserProfile.jsx";
 
 import CheckoutResult from "./features/common/pages/CheckoutResult.jsx";
 
@@ -65,6 +66,7 @@ function App() {
         <Route path="/" element={<Inicio />} />
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="/visitanos" element={<Visitanos />} />
         <Route path="/contactanos" element={<Contactanos />} />
         <Route path="/nosotros" element={<Nosotros />} />

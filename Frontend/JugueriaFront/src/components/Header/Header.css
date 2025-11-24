@@ -1,3 +1,4 @@
+/* --- CONFIGURACIÓN GENERAL NAVBAR --- */
 .navbar {
   background: #fff;
   height: 80px;
@@ -7,108 +8,241 @@
   padding: 0 20px;
   position: relative;
   z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* LOGO */
+/* --- LOGO --- */
 .nav_logo {
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 25px;
-  color: black;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
 }
-
 .logo_img {
-  height: 70px;
+  height: 60px;
   margin-right: 10px;
 }
 
-/* ITEMS */
-.nav_items a,
-.nav_items button { 
-  margin: 15px;
-  color: black;
-  position: relative;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  
-  /* Reset CSS del botón para que parezca un enlace */
-  background: none;
-  border: none;
-  padding: 0; 
-  cursor: pointer;
+/* --- ITEMS DE NAVEGACIÓN --- */
+.nav_items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.nav_items  a:hover {
+.nav_items a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.nav_items a:hover,
+.nav_items a.active {
   color: #ff5722;
 }
 
-.nav_actions {
+/* --- BOTÓN CARRITO --- */
+.nav_cart_btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
   display: flex;
   align-items: center;
-  gap: 15px;
+  transition: 0.3s;
+}
+.nav_cart_btn:hover {
+  color: #ff5722;
+  transform: scale(1.1);
 }
 
-.cart_icon {
-  font-size: 20px;
-  color: black;
+/* --- BOTÓN INICIAR SESIÓN --- */
+.login-btn {
+  background-color: #ff5722;
+  color: white !important;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid #ff5722;
 }
 
-/* TOOGLE (React Icons) */
+.login-btn:hover {
+  background-color: #e64a19;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+}
+
+/* --- PERFIL USUARIO (CORREGIDO) --- */
+/* Cambiamos el nombre de la clase para que no choque con la página de Perfil */
+.header-user-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon-btn {
+  background: #f0f0f0;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.3s;
+}
+
+.profile-icon-btn:hover {
+  background: #ff5722;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --- DROPDOWN MENÚ --- */
+.dropdown-menu {
+  position: absolute;
+  top: 55px;
+  right: -10px;
+  background: white;
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border: 1px solid #eee;
+  animation: fadeIn 0.2s ease;
+  z-index: 1100;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  top: -6px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  border-left: 1px solid #eee;
+  border-top: 1px solid #eee;
+}
+
+.dropdown-welcome {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 5px;
+}
+
+.dropdown-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f8f9fa;
+  color: #ff5722;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #eee;
+  margin: 5px 0;
+}
+
+.logout-text {
+  color: #dc3545 !important;
+}
+.logout-text:hover {
+  background: #fff5f5 !important;
+}
+
+/* --- RESPONSIVE --- */
 .nav_toggle {
   display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
   cursor: pointer;
 }
 
-.toggle_icon {
-  font-size: 28px;
-  color: black;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.nav_items button.nav_link {
-    /* Por ejemplo, un botón destacado */
-    background-color: #ff5722; 
-    color: white; 
-    font-size: 28px;
-    border-radius: 5px;
-    padding: 1px 5px;
-    margin: 0 5px; 
-}
-
-/* Responsive */
 @media (max-width: 768px) {
+  .nav_toggle {
+    display: block;
+  }
+
   .nav_items {
     position: absolute;
     top: 80px;
     left: 0;
-    background: #fff;
-    display: flex;
+    background: white;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    padding: 20px;
+    gap: 15px;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
-    padding-top: 30px;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
   .nav_items.open {
-    transform: translateX(0) !important;
-  }
-
-  .nav_toggle {
-    display: flex !important;
-    margin: 15px;
+    transform: translateX(0);
   }
 
   .nav_items a {
-    font-size: 18px;
-    margin: 20px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
   }
-  .nav_items button.nav_link {
-    font-size: 25px;
-    padding: 4px 5px;
+
+  .user-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #eee;
+    margin-top: 10px;
+  }
+
+  .dropdown-arrow {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
