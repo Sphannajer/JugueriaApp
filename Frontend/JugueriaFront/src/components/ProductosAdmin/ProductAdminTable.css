@@ -1,4 +1,6 @@
+/* Estilos para la Tabla de Administración de Productos y Botones CRUD/Reporte */
 
+/* Contenedor Responsivo: Permite el scroll horizontal si la tabla es demasiado ancha */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -7,17 +9,19 @@
     border-radius: 8px; 
 }
 
+/* Estilo de la tabla principal de administración */
 .admin-product-table {
     width: 100%;
-    border-collapse: collapse; 
+    border-collapse: collapse; /* Elimina el espacio entre bordes de celdas */
     font-size: 0.9em;
-    min-width: 800px; 
+    min-width: 800px; /* Asegura un ancho mínimo para evitar compresión excesiva */
     background-color: #fff;
-    table-layout: fixed; 
+    table-layout: fixed; /* Ayuda a que las columnas se ajusten a los anchos definidos */
 }
 
+/* Encabezado de la tabla */
 .admin-product-table thead tr {
-    background-color: #007bff; 
+    background-color: #007bff; /* Color azul primario para el encabezado */
     color: white;
     text-align: left;
 }
@@ -25,7 +29,7 @@
 .admin-product-table th {
     padding: 12px 15px;
     font-weight: 600;
-    border-right: 1px solid #0056b3; 
+    border-right: 1px solid #0056b3; /* Separador de columna */
 }
 
 .admin-product-table th:last-child {
@@ -33,15 +37,17 @@
 }
 
 
+/* Cuerpo de la tabla (filas de datos) */
 .admin-product-table tbody tr {
     border-bottom: 1px solid #ddd;
     transition: background-color 0.2s ease;
 }
 
 .admin-product-table tbody tr:hover {
-    background-color: #f1f8ff;
+    background-color: #f1f8ff; /* Resaltado al pasar el mouse */
 }
 
+/* Rayado de cebra: color de fondo para filas pares */
 .admin-product-table tbody tr:nth-of-type(even) {
     background-color: #f7f7f7;
 }
@@ -51,52 +57,53 @@
     vertical-align: middle;
     border-right: 1px solid #eee;
     white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: hidden; /* Oculta el texto que excede el ancho de la celda */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para texto oculto */
 }
 
 .admin-product-table td:last-child {
     border-right: none;
 }
 
+/* Definición de anchos específicos para columnas (por posición) */
 .admin-product-table th:nth-child(1),
-.admin-product-table td:nth-child(1) {
+.admin-product-table td:nth-child(1) { /* Columna ID */
     width: 50px;
     text-align: center;
 }
 
 .admin-product-table th:nth-child(2),
-.admin-product-table td:nth-child(2) { 
+.admin-product-table td:nth-child(2) { /* Columna Imagen */
     width: 80px;
     text-align: center;
 }
 
 .admin-product-table th:nth-child(5),
-.admin-product-table td:nth-child(5) { 
+.admin-product-table td:nth-child(5) { /* Columna Precio */
     width: 90px;
     text-align: right;
 }
 
 .admin-product-table th:nth-child(6),
-.admin-product-table td:nth-child(6) { 
+.admin-product-table td:nth-child(6) { /* Columna Stock */
     width: 70px;
     text-align: center;
 }
 
 .admin-product-table th:nth-child(7),
-.admin-product-table td:nth-child(7) { 
+.admin-product-table td:nth-child(7) { /* Columna Categoría */
     width: 130px; 
     text-align: left;
 }
 
 .admin-product-table th:nth-child(8),
-.admin-product-table td:nth-child(8) { 
+.admin-product-table td:nth-child(8) { /* Columna Acciones */
     width: 180px; 
     min-width: 180px; 
     text-align: center;
 }
 
-
+/* Estilos de imagen dentro de la tabla */
 .admin-product-table img {
     border-radius: 4px; 
     border: 1px solid #ccc;
@@ -105,7 +112,7 @@
 }
 
 
-
+/* Contenedor de los botones de acción (Editar/Eliminar) */
 .admin-product-table .actions {
     display: flex;
     gap: 5px; 
@@ -124,8 +131,9 @@
 }
 
 
+/* Botón "Editar" */
 .btn-edit {
-    background-color: #28a745; 
+    background-color: #28a745; /* Color verde */
     color: white;
 }
 
@@ -134,8 +142,9 @@
 }
 
 
+/* Botón "Eliminar" */
 .btn-delete {
-    background-color: #dc3545;
+    background-color: #dc3545; /* Color rojo */
     color: white;
 }
 
@@ -143,8 +152,8 @@
     background-color: #c82333;
 }
 
+/* Botón "Crear Nuevo Producto" */
 .btn-create {
- 
     background-color: #007bff;
     color: white;
     padding: 10px 15px;
@@ -155,7 +164,6 @@
     font-weight: 600;
     transition: background-color 0.3s ease;
     
-
     margin-top: 18px;
     margin-bottom: 15px;
     display: inline-block; 
@@ -169,13 +177,13 @@
 
 .btn-create:active {
     background-color: #004080; 
-    transform: translateY(1px);
+    transform: translateY(1px); /* Efecto de "presionar" */
 }
 
 
+/* Botón "Descargar Reporte Excel" */
 .btn-excel {
- 
-    background-color: #04a346;
+    background-color: #04a346; /* Color verde/excel */
     color: white;
     padding: 10px 15px;
     border: none;
@@ -185,7 +193,6 @@
     font-weight: 600;
     transition: background-color 0.3s ease;
     
-
     margin-top: 18px;
     margin-bottom: 15px;
     display: inline-block; 

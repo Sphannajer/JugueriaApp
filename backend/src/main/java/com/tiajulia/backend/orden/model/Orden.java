@@ -1,30 +1,40 @@
 package com.tiajulia.backend.orden.model;
 
-import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import jakarta.persistence.*; // Anotaciones de Persistencia JPA
+import java.math.BigDecimal; // Para manejar el total de la orden con precisión
+import java.time.LocalDateTime; // Para manejar la marca de tiempo de la orden
 import java.util.List;
 
+// Marca esta clase como una entidad JPA
 @Entity
+// Especifica el nombre de la tabla en la base de datos
 @Table(name = "ordenes")
 public class Orden {
 
+    // Clave primaria
     @Id
+    // Generación de valor autoincremental
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_orden")
     private Long idOrden;
 
+    // Columna para la fecha y hora de la orden (no puede ser nula)
     @Column(name = "fecha_hora", nullable = false)
-    private LocalDateTime fechaHora = LocalDateTime.now(); 
+    private LocalDateTime fechaHora = LocalDateTime.now(); // Asigna la fecha y hora actual por defecto al crear
 
+    // Campo para el total de la orden
     private BigDecimal total;
 
+    // Estado de la orden, inicializado como "COMPLETADA" por defecto
     private String estado = "COMPLETADA";
     
-    // FIX CRÍTICO: Definir la relación One-to-Many con la ENTIDAD OrdenDetalle
-    // CascadeType.ALL: Guarda/Actualiza/Elimina Detalles al hacer la operación en Orden.
-    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrdenDetalle> detalles; 
+    // Define la relación Uno a Muchos con la entidad OrdenDetalle
+    @OneToMany(
+        mappedBy = "orden", // Indica el campo en la entidad OrdenDetalle que mapea esta relación
+        cascade = CascadeType.ALL, // Las operaciones (Guardar, Eliminar) se propagan a los detalles
+        orphanRemoval = true // Elimina los detalles si se desvinculan de la orden padre
+    )
+    private List<OrdenDetalle> detalles; // Lista de los ítems comprados en esta orden
     
     // Getters y Setters...
     public Long getIdOrden() { return idOrden; }
@@ -39,7 +49,7 @@ public class Orden {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
-    // ¡CRÍTICO! El getter y setter para 'detalles' debe usar la ENTIDAD OrdenDetalle
+    // Getter y setter para la lista de detalles
     public List<OrdenDetalle> getDetalles() { return detalles; }
     public void setDetalles(List<OrdenDetalle> detalles) { this.detalles = detalles; }
 }

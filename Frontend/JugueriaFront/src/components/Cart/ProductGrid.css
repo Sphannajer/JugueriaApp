@@ -1,20 +1,23 @@
+/* Estilos para el Contenedor de la Cuadrícula de Productos */
 .product-grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  align-items: start;
+    display: grid; /* Activa el sistema de cuadrícula */
+    grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual ancho (escritorio por defecto) */
+    gap: 2rem; /* Espacio entre filas y columnas */
+    align-items: start; /* Alinea los ítems al inicio del contenedor (útil para tarjetas de diferente altura) */
 }
 
+/* --- Media Query para Tablets (hasta 1024px) --- */
 @media (max-width: 1024px) {
-  .product-grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
+    .product-grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Cambia a 2 columnas de igual ancho */
+        gap: 1.5rem;
+    }
 }
 
+/* --- Media Query para Móviles (hasta 768px) --- */
 @media (max-width: 768px) {
-  .product-grid-container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+    .product-grid-container {
+        grid-template-columns: 1fr; /* Cambia a 1 columna (lista vertical) */
+        gap: 1.5rem;
+    }
 }

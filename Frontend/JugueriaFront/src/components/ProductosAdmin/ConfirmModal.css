@@ -1,38 +1,46 @@
+/* Estilos para el Modal de Confirmación */
 
+/* El fondo (overlay) que cubre toda la pantalla */
 .form-modal-overlay {
-   
+    /* Usamos 'flex' para centrar el modal horizontal y verticalmente */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Las propiedades de posición y z-index están en el componente React */
 }
 
+/* El contenido visible del modal */
 .confirm-modal-content {
     background: white;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacarse */
     width: 90%;
-    max-width: 400px;
-    z-index: 1001; 
+    max-width: 400px; /* Ancho máximo en pantallas grandes */
+    z-index: 1001; /* Debe estar por encima del overlay (999) */
 }
 
+/* Título de advertencia */
 .confirm-modal-content h2 {
-    color: #F44336; 
+    color: #F44336; /* Color rojo para indicar advertencia/peligro */
     margin-top: 0;
     font-size: 1.5em;
 }
 
+/* Párrafo de texto */
 .confirm-modal-content p {
     margin: 15px 0 25px 0;
     line-height: 1.4;
 }
 
+/* Contenedor de botones de acción */
 .confirm-modal-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
     gap: 10px;
 }
 
+/* Botón "Cancelar" */
 .btn-cancel {
     background-color: #ccc;
     color: #333;
@@ -47,8 +55,9 @@
     background-color: #bbb;
 }
 
+/* Botón "Sí, Eliminar" */
 .btn-delete-confirm {
-    background-color: #F44336; 
+    background-color: #F44336; /* Rojo fuerte para la acción definitiva */
     color: white;
     border: none;
     padding: 8px 15px;

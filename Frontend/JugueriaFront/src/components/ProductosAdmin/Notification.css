@@ -1,22 +1,26 @@
+/* Estilos para el componente de Notificación */
 
+/* Estilo base para todas las notificaciones (posicionamiento y apariencia) */
 .notification-toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px; 
+    position: fixed; /* Fija la notificación en un lugar de la ventana */
+    bottom: 20px; /* Separación desde el borde inferior */
+    right: 20px; /* Separación desde el borde derecho */
     padding: 15px 25px;
     border-radius: 8px;
     color: white;
     font-weight: bold;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 1000; 
+    z-index: 1000; /* Asegura que la notificación esté por encima de otros elementos */
     opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out; /* Prepara para animaciones de entrada/salida */
 }
 
+/* Estilo específico para mensajes de ÉXITO */
 .notification-success {
-    background-color: #4CAF50; 
+    background-color: #4CAF50; /* Color verde */
 }
 
+/* Estilo específico para mensajes de ERROR */
 .notification-error {
-    background-color: #F44336;
+    background-color: #F44336; /* Color rojo */
 }

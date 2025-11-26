@@ -1,18 +1,18 @@
 package com.tiajulia.backend.orden.dto;
 
-import java.math.BigDecimal;
-import java.util.List;
+import java.math.BigDecimal; // Importa para manejar el monto total con precisión
+import java.util.List; // Para manejar la lista de ítems en el carrito
 
 /**
  * DTO (Data Transfer Object) para recibir la solicitud de creación de una orden 
  * de venta desde el frontend (el carrito de compras).
  */
-public class OrdenRequestDTO {
+public class OrdenRequestDTO { // El DTO de entrada para la petición POST de checkout
     
-    // El monto total calculado en el frontend
+    // El monto total calculado en el frontend. Usado típicamente para validación en el backend.
     private BigDecimal total;
     
-    // La lista de productos (detalles) en el carrito
+    // La lista de productos (detalles) en el carrito. Cada elemento es un OrdenDetalleDTO.
     private List<OrdenDetalleDTO> detalles; 
 
     // --- Getters y Setters ---

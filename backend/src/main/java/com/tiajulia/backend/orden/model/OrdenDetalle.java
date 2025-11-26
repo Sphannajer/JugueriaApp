@@ -1,27 +1,34 @@
 package com.tiajulia.backend.orden.model;
 
-import jakarta.persistence.*;
-import java.math.BigDecimal;
+import jakarta.persistence.*; // Anotaciones de Persistencia JPA
+import java.math.BigDecimal; // Para manejar el precio unitario con precisión
 
+// Marca esta clase como una entidad JPA
 @Entity
+// Especifica el nombre de la tabla en la base de datos
 @Table(name = "orden_detalle")
 public class OrdenDetalle {
 
+    // Clave primaria del detalle
     @Id
+    // Generación de valor autoincremental
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle")
     private Long idDetalle;
 
-    // FIX CRÍTICO: Relación Many-to-One con la entidad Orden
-    @ManyToOne(fetch = FetchType.LAZY)
+    // Define la relación Muchos Detalles a Una Orden (Many-to-One)
+    @ManyToOne(fetch = FetchType.LAZY) // Carga perezosa: La orden no se carga hasta que se accede a ella
     @JoinColumn(name = "id_orden", nullable = false) // Columna de clave foránea en la tabla DB
-    private Orden orden; 
+    private Orden orden; // Objeto que representa la orden padre a la que pertenece este detalle
 
+    // ID del producto comprado (se guarda aquí para mantener el historial, aunque el producto original cambie)
     @Column(name = "id_producto")
     private Long idProducto;
 
+    // Cantidad comprada de este producto
     private Integer cantidad;
 
+    // Precio unitario registrado al momento de la compra
     @Column(name = "precio_unitario")
     private BigDecimal precioUnitario;
     
@@ -29,7 +36,7 @@ public class OrdenDetalle {
     public Long getIdDetalle() { return idDetalle; }
     public void setIdDetalle(Long idDetalle) { this.idDetalle = idDetalle; }
 
-    // ¡CRÍTICO! Getter/Setter para la relación con Orden
+    // Getter y setter para la relación con Orden
     public Orden getOrden() { return orden; }
     public void setOrden(Orden orden) { this.orden = orden; }
 

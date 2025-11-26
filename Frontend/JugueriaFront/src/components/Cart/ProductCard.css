@@ -1,86 +1,90 @@
+/* Estilos para la Tarjeta Individual de Producto */
+
 .product-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
-  transition: transform 0.3s ease;
-  min-height: 380px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Diseño en columna para escritorio */
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s ease;
+    min-height: 380px; /* Altura mínima consistente */
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px); /* Efecto flotante al pasar el mouse */
 }
 
 .product-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 .product-title {
-  font-weight: bold;
-  font-size: 1.25rem;
-  margin-top: 0;
-  margin-bottom: 0.75rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
 }
 
 .product-description {
-  font-size: 0.875rem;
-  color: #555;
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  flex-grow: 1;
+    font-size: 0.875rem;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible */
 }
 
 .product-price {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: #ff9900;
-  margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #ff9900; /* Color primario de la marca */
+    margin-bottom: 1rem;
 }
 
+/* Botón "Agregar al Carrito" */
 .add-to-cart-button {
-  background-color: #ff9900;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Borde muy redondeado (píldora) */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .add-to-cart-button:hover {
-  background-color: #e68a00;
+    background-color: #e68a00;
 }
 
+/* --- Media Query para Móviles (hasta 768px) --- */
 @media (max-width: 768px) {
-  .product-card {
-    flex-direction: row;
-    text-align: left;
-    gap: 15px;
-    padding: 10px;
-    min-height: auto;
-  }
-  .product-card img {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 0;
-  }
-  .product-card .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .product-card button {
-    margin-top: 10px;
-    align-self: flex-start;
-  }
+    .product-card {
+        flex-direction: row; /* Cambia a diseño horizontal */
+        text-align: left;
+        gap: 15px;
+        padding: 10px;
+        min-height: auto;
+    }
+    .product-card img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 0;
+    }
+    .product-card .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .product-card button {
+        margin-top: 10px;
+        align-self: flex-start; /* Alinea el botón a la izquierda en el nuevo diseño */
+    }
 }

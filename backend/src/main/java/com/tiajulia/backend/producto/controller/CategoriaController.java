@@ -10,16 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+// Indica a Spring que esta clase es un controlador REST que maneja peticiones HTTP
 @RestController
+// Define la ruta base para todos los endpoints de este controlador (ej: http://localhost:8080/api/categorias)
 @RequestMapping("/api/categorias")
+// Permite peticiones desde el origen del frontend (React en http://localhost:5173)
 @CrossOrigin(origins = "http://localhost:5173") 
 public class CategoriaController {
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    // Inyecta automáticamente una instancia de CategoriaRepository (patrón Dependency Injection)
+ @Autowired
+ private CategoriaRepository categoriaRepository;
 
+    // Mapea peticiones HTTP GET a la ruta base ("/api/categorias")
     @GetMapping
+    // Método que se ejecuta para obtener todas las categorías
     public List<Categoria> getAllCategorias() {
-        return categoriaRepository.findAll();
+        // Llama al método findAll del repositorio para consultar y devolver todas las categorías de la BD
+    return categoriaRepository.findAll();
     }
 }
