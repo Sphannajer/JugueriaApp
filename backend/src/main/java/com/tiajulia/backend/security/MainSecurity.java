@@ -55,9 +55,8 @@ public class MainSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> {
-                }) // Habilita CORS (para frontend)
-                .csrf(csrf -> csrf.disable()) // Deshabilita CSRF para APIs REST
+                .cors(cors -> {})
+                .csrf(csrf -> csrf.disable())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
@@ -68,6 +67,7 @@ public class MainSecurity {
                                 "/api/categorias/**",
                                 "/api/inventario/**",
                                 "/api/checkout/**",
+                                "/actuator/**",  // <--- ¡AGREGA ESTA LÍNEA AQUÍ!
                                 "auth/login",
                                 "auth/nuevo",
                                 "auth/request-reset",
@@ -76,7 +76,6 @@ public class MainSecurity {
                         .permitAll()
                         .anyRequest().authenticated());
 
-        // Agrega el filtro JWT
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
