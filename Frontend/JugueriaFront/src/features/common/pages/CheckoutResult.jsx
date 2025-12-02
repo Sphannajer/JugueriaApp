@@ -1,17 +1,17 @@
-// src/pages/CheckoutResult.jsx
+// Imports necesarios
 import React, { useEffect, useMemo } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { getDraft, clearDraft } from "../../products/services/productoApi";
 import { useToast } from "../../../ui/toast";
 import { useCart } from "../../../components/Slide-Cart/CartContext";
 import "../../../styles/checkout-result.css";
-
+// Recibe la propiedad "forcedStatus" y la función para vaciar el carrito global (clearCart) por si el contexto del carrito no está cargando, la app no se rompa.
 export default function CheckoutResult({ forcedStatus }) {
   const [sp] = useSearchParams();
   const toast = useToast();
   const { clearCart } = useCart?.() || {};
 
-  // status puede venir por query (auto_return) o forzado por ruta
+  // Verifica si hay un estado forzado como "failure", si no hay nada, asume éxito por defecto (success).
   const status = forcedStatus || sp.get("status") || "success";
   const paymentId = sp.get("payment_id") || null;
   const draft = useMemo(() => getDraft(), []);
@@ -19,18 +19,21 @@ export default function CheckoutResult({ forcedStatus }) {
   useEffect(() => {
     // Limpia carrito local
     try {
-      clearDraft();
-      if (typeof clearCart === "function") clearCart();
+      clearDraft(); // Borra el borrador temporal
+      if (typeof clearCart === "function")
+        clearCart(); // Vacía el estado global de React
       else localStorage.removeItem("cart");
     } catch {
       /* empty */
     }
+    // Muestra notificaciones visuales
     if (status === "success") toast.success("¡Pago recibido! 🎉");
     else if (status === "pending") toast.info("Tu pago está pendiente.");
     else toast.error("El pago no se completó.");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  {
+    /* Usa un objeto para elegir qué título y qué mensaje mostrar basándose en la variable "status".*/
+  }
   const title = {
     success: "¡Gracias por tu compra!",
     pending: "Pago pendiente",
@@ -51,13 +54,13 @@ export default function CheckoutResult({ forcedStatus }) {
         <div className="chk-icon" aria-hidden />
         <h1>{title}</h1>
         <p className="chk-lead">{lead}</p>
-
+        /* Muestra el ID de Mercado Pago */
         {paymentId && (
           <p className="chk-small">
             ID de pago: <strong>{paymentId}</strong>
           </p>
         )}
-
+        {/* Si existe el borrador "draft" muestra la lista de lo que se compró, para que el usuario verifique si es correcto. */}
         {draft?.items?.length ? (
           <div className="chk-summary">
             <h2>Resumen</h2>
@@ -71,7 +74,6 @@ export default function CheckoutResult({ forcedStatus }) {
             </ul>
           </div>
         ) : null}
-
         <div className="chk-actions">
           <Link className="chk-btn" to="/">
             Volver a la tienda
